@@ -1,4 +1,4 @@
-# IronMan-guidelines
+# IronMan-Guidelines
 
 This project:
 
@@ -6,5 +6,5 @@ This project:
   [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 * Provides an `eslint-config-ironman` package that can be added as a dependency
-  in other projects. That way, conding style can automatically be checked using
+  in other projects. That way, coding style can automatically be checked using
   eslint.
