@@ -1,7 +1,10 @@
-# IronMan-Arsenal
+# IronMan-guidelines
 
-Common utilities for the IronMan project components
+This project:
 
-Within this repository, you will be able to find the common Contributing
-Guidelines (Coding Style and Workflow included), as well as a few shared
-libraries for the multiple components making up the whole Project.
+* Defines and explains the coding style and workflow for IronMan project. See
+  [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+* Provides an `eslint-config-ironman` package that can be added as a dependency
+  in other projects. That way, conding style can automatically be checked using
+  eslint.
