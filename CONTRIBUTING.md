@@ -369,6 +369,27 @@ web browsers. They shall be ignored.
 
 ## Additional Rules
 
+### Blocks
+ * [16.3](#16.3) Do not use one-line blocks for conditions. This reduces
+ readability by deviating from the usual way people read code, interfering with
+ both their habits and their reading flow.
+ ```js
+ // bad
+ if (test)
+    return false
+
+ // bad
+ if (test) return false;
+
+ // bad
+ if (test) { return false; }
+
+ // good
+ if (test) {
+     return false;
+ }
+ ```
+
 ### Comments
 
  * [17.6](#17.6) Even though single line comments are accepted, try to minimize
