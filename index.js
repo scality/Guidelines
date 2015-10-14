@@ -1,7 +1,6 @@
-{
+module.exports = {
     "extends": "airbnb",
 
-    // Overrides
     "env": {
         "browser": false,
         "node": true,
@@ -15,7 +14,8 @@
         "quotes": 0,
         "semi": [2, "always"],
         "curly": 0,
-        "space-before-function-paren": [2, {"anonymous": "always", "named": "never"}],
+        "space-before-function-paren": [2, {"anonymous": "always",
+                                            "named": "never"}],
         "comma-dangle": 0,
         "camelcase": [2, {"properties": "always"}],
         "id-length": 0,

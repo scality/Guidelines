@@ -1,0 +1,22 @@
+{
+    "name": "eslint-config-ironman",
+    "version": "1.0.0",
+    "description": "ESLint config for IronMan coding guidelines",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/adrienverge/IronMan-guidelines"
+    },
+    "keywords": [
+        "eslint",
+        "eslintconfig",
+        "config",
+        "airbnb",
+        "ironman",
+        "javascript",
+        "styleguide"
+    ],
+    "author": "Adrien Vergé",
+    "license": "MIT",
+    "homepage": "https://github.com/adrienverge/IronMan-guidelines"
+}
