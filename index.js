@@ -14,6 +14,7 @@ module.exports = {
         "quotes": 0,
         "semi": [2, "always"],
         "curly": 0,
+        "space-before-keywords": 2,
         "space-before-function-paren": [2, {"anonymous": "always",
                                             "named": "never"}],
         "comma-dangle": 0,
