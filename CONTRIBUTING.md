@@ -156,6 +156,25 @@ software. This data can be used to detect unreliable or insufficient
 performance within a component, as well as allow the detection of performance
 regressions.
 
+#### Documenting the Integration Test Plan
+
+The integration tests scenarios must be documented into a proper .md document
+called ```TESTING.md```. That's what we call the ```Test Plan``` of the
+project. This document must describe and explain properly the following
+elements for each scenario:
+ - The architecture of the software components taking part in the test (where
+ do the components run, in the same host?  different hosts?  other?)
+ - What feature is being tested?
+ - If relevant, what aspect/mechanism of the feature is being tested/proved?
+ - How is the feature tested? With what behavior?
+ - Why is it being tested this way?
+
+This document needs not go into the detail of how the test is implemented, and
+shall not explicitly name third-party software used as the test's
+implementation, but describe the required functionalities from the third party
+tools and libraries. This should allow to switch any third-party tools without
+impacting the Test Plan itself.
+
 #### Naming and organizing the tests
 
 For harmonization purposes, every portion of the project shall follow the
