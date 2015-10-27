@@ -5,3 +5,4 @@ machine:
 test:
     override:
         - npm run --silent lint
+        - npm run --silent lint_md

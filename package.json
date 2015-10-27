@@ -7,8 +7,9 @@
     },
     "main": "index.js",
     "scripts": {
-        "test": "npm run --silent lint",
-        "lint": "node_modules/.bin/eslint -c index.js $(git ls-files '*.js')"
+        "test": "npm run --silent lint && npm run --silent lint_md",
+        "lint": "node_modules/.bin/eslint -c index.js $(git ls-files '*.js')",
+        "lint_md": "node bin/mdlint.js $(git ls-files '*.md')"
     },
     "repository": {
         "type": "git",
