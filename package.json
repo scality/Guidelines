@@ -6,6 +6,10 @@
         "mdlint": "./bin/mdlint.js"
     },
     "main": "index.js",
+    "scripts": {
+        "test": "npm run --silent lint",
+        "lint": "node_modules/.bin/eslint -c index.js $(git ls-files '*.js')"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/scality/IronMan-Guidelines"
@@ -13,6 +17,11 @@
     "dependencies": {
         "commander": "^1.3.2",
         "markdownlint": "^0.0.8"
+    },
+    "devDependencies": {
+        "babel-eslint": "^4.1.3",
+        "eslint": "^1.5.1",
+        "eslint-config-airbnb": "^0.0.9"
     },
     "keywords": [
         "eslint",

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-"use strict";
+"use strict"; // eslint-disable-line strict
 
 const commander = require("commander");
 const markdownlint = require("markdownlint");
