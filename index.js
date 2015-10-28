@@ -24,4 +24,4 @@ module.exports = {
         "valid-jsdoc": 1,
         "eol-last": 2
     }
-}
+};

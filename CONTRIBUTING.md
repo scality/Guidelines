@@ -1,19 +1,18 @@
-Contributing to the Project
-===========================
+# Contributing to the Project
 
 This document contains and defines the rules that have to be followed by any
 contributor to the project, in order for any change to be merged into the
 stable branches.
 
-Workflow
-========
+## Workflow
 
 The worklow we define here has multiple purposes, and this document will go
 over what rule is here to ensure each of these purposes:
- * Define one and only one path to add code into the codebase
- * Allow the maintenance of multiple releases at the same time
- * Work efficiently as a team
- * Streamline all the development in one rolling-release branch
+
+* Define one and only one path to add code into the codebase
+* Allow the maintenance of multiple releases at the same time
+* Work efficiently as a team
+* Streamline all the development in one rolling-release branch
 
 First, have a cookie, and look at this magnificient ASCII workflow
 representation. It should help you identify how contributions are made, where
@@ -70,6 +69,7 @@ following the [guidelines](#committing-guidelines).
 
 The branch name shall follow a very concise naming scheme, in order for an
 **automatic CI system to be able to start builds on every development branch**:
+
 ```
 dev/tag/name
 ```
@@ -77,27 +77,31 @@ dev/tag/name
 The `WIP` branch name must start by a branch type, on which depends the rest of
 the naming scheme for the branch.
 The following branch types are currently defined:
- * dev: Development work
- * proto: Prototype development (is not exempted from following the
- contributing guidelines, except for the testing aspect, as it provides only
- prototypes and not production-ready code)
+
+* dev: Development work
+* proto: Prototype development (is not exempted from following the
+  contributing guidelines, except for the testing aspect, as it provides only
+  prototypes and not production-ready code)
 
 The dev `WIP` branch names must start by the branch type (`dev/`, followed by a
 `tag` defined to describe the type of task the branch is associated with, then
 followed by a self-explanatory `name` for the branch. The following Tags are
 currently allowed:
- * FT: Feature branch
- * BF: Bugfix branch
- * HF: Hotfix branch (fundamentaly an emergency Bugfix branch)
- * DOC: Documentation branch
- * CLEANUP: Code Cleanup/Refactoring branch
- * ...
+
+* FT: Feature branch
+* BF: Bugfix branch
+* HF: Hotfix branch (fundamentaly an emergency Bugfix branch)
+* DOC: Documentation branch
+* CLEANUP: Code Cleanup/Refactoring branch
+* ...
 
 For instance, if contributor A was going to work on the feature adding
 squeaking sounds to his favourite VCS, he could name his branch:
+
 ```
 dev/FT/SqueakOnPush
 ```
+
 This would mean that it is a working branch for a Feature called "Squeak On
 Push".
 
@@ -105,6 +109,7 @@ In the same fashion, the prototype branch names must start by the branch type
 (`proto/`, followed by a self-explanatory `name` for the branch's explorated
 feature. For instance, if contributor A was going to experiment on a new
 algorithm, he could name his branch:
+
 ```
 proto/AwesomeAlgorithm
 ```
@@ -114,14 +119,14 @@ a pull request from his branch into the master branch. Then, the code merging
 process described in [Merging code into the
 master](#merging-code-into-the-master) starts.
 
-
 ### Development Guidelines
 
 With his own `WIP` branch, contributor A can now manage the branch's code as
 he wishes, as the branch is his own responsibility, within the constraints of
 the project. These constraints include:
- * Complying to the [Coding Style Guidelines](#coding-style-guidelines)
- * Providing the proper tests to validate the proposed code
+
+* Complying to the [Coding Style Guidelines](#coding-style-guidelines)
+* Providing the proper tests to validate the proposed code
 
 In order for the project to be as stable as possible, every piece of code must
 be tested. This means that any code submission must be associated with related
@@ -159,15 +164,16 @@ regressions.
 #### Documenting the Integration Test Plan
 
 The integration tests scenarios must be documented into a proper .md document
-called ```TESTING.md```. That's what we call the ```Test Plan``` of the
-project. This document must describe and explain properly the following
-elements for each scenario:
- - The architecture of the software components taking part in the test (where
- do the components run, in the same host?  different hosts?  other?)
- - What feature is being tested?
- - If relevant, what aspect/mechanism of the feature is being tested/proved?
- - How is the feature tested? With what behavior?
- - Why is it being tested this way?
+called `TESTING.md`. That's what we call the `Test Plan` of the project. This
+document must describe and explain properly the following elements for each
+scenario:
+
+- The architecture of the software components taking part in the test (where
+  do the components run, in the same host?  different hosts?  other?)
+- What feature is being tested?
+- If relevant, what aspect/mechanism of the feature is being tested/proved?
+- How is the feature tested? With what behavior?
+- Why is it being tested this way?
 
 This document needs not go into the detail of how the test is implemented, and
 shall not explicitly name third-party software used as the test's
@@ -184,6 +190,7 @@ them.
 All the tests shall lie in a `tests` directory, in which one shall find one
 directory per type of test, and utilities used only in the tests in an `utils`
 directory:
+
 ```
  /home/contributor/project/lib/
                            tests/
@@ -219,20 +226,21 @@ runnable without depending on the other tests. The names shall follow the same
 naming rules as the unit tests, which is bear the meaning of what's being
 tested, including the module, the function, and the specific case tested.
 
-
 ### Committing Guidelines
 
 With his own `WIP` branch, contributor A can commit and manage the branch's
 history as he wishes, as the branch is his own responsibility, within the
 constraints of the project. These constraints for the commits include:
- * Commit Message Formatting Policy
- * Peer validation of the commit's atomicity and meaningfulness
+
+* Commit Message Formatting Policy
+* Peer validation of the commit's atomicity and meaningfulness
 
 It is asked of every contributor to provide commit messages as clear as
 possible, while attempting to make one commit comply to the following
 conditions:
- * Provide one and only one feature/bugfix/meaningful change
- * Provide working unit and functional tests associated to the change.
+
+* Provide one and only one feature/bugfix/meaningful change
+* Provide working unit and functional tests associated to the change.
 
 The commit message shall follow a **standardized formatting, that will be checked
 automatically by a VCS hook on the commit**.
@@ -249,13 +257,14 @@ tracker reference (issue number or bugreport link).
 
 Sticking with the earlier example of the Squeak-On-Push mobile app feature, we
 could have a commit formatted such as:
+
 ```ascii
 FT: Provide an API (hook) to add custom actions on VCS push
 
 Related to issue #245
- * Provide a simple way to hook a callback into the new OnPush API
- * The hook is called whenever the history is pushed to the central system
- * Multiple callbacks can be registered for one hook
+* Provide a simple way to hook a callback into the new OnPush API
+* The hook is called whenever the history is pushed to the central system
+* Multiple callbacks can be registered for one hook
 ```
 
 The tags used in the commit message shall follow the same scheme as the tags
@@ -273,12 +282,13 @@ members of the project can act on the `PR` by merging the given commits into
 the `master` branch.
 
 The code reviews must include the following checks:
- * Ensuring the compliance to the coding style guidelines
- * Ensuring the presence and coverage of tests (unit, functional and
-                                                performance)
- * Ensuring the code is functional and working, through the tests
- * Ensuring the commit messages were properly formatted and as atomic as
-   possible
+
+* Ensuring the compliance to the coding style guidelines
+* Ensuring the presence and coverage of tests (unit, functional and
+                                               performance)
+* Ensuring the code is functional and working, through the tests
+* Ensuring the commit messages were properly formatted and as atomic as
+  possible
 
 ## Managing and Maintaining Releases
 
@@ -288,6 +298,7 @@ generate a release, though. When the team deems the state of the project worthy
 of a `release` (be it due to a specific set of features making it into the
 `master` branch or anything else), A specific `release` branch is created
 starting from the specific merge commit bringing in the last relevant change.
+
 ```ascii
    WIP Branches         master        Release Branches
                           |
@@ -306,15 +317,18 @@ the version's minor number. This way, we can follow the semantic versionning
 scheme, increasing the version's patch number for each bugfix brought into the
 release branch. For instance, for the 2.4.X version of the product,
 the branch would be named:
+
 ```
 stable/2.4
 ```
+
 In order to bring specific bugfixes or hotfixes into the release branch, the
 patch has to go through the whole process of being reviewed before it's merged
 into the `master` branch, and only then can it be cherry-picked (using the -x
 option, in order to keep a reference to the original commit in the new commit
 message) from the `master` branch to the given `release` branch. Then the
 maintainer can bump the patch version of the given `release` branch.
+
 ```ascii
    WIP Branches         master        Release Branches
                           |
@@ -334,9 +348,7 @@ maintainer can bump the patch version of the given `release` branch.
                           v                v
 ```
 
-
-Coding Style Guidelines
-=======================
+## Coding Style Guidelines
 
 This Coding Style guidelines exist for one simple reason: working together.
 This means that by following those, the different contributors will naturally
@@ -366,205 +378,207 @@ web browsers. They shall be ignored.
 
 ### [Whitespace](http://github.com/airbnb/javascript/blob/master/README.md#whitespace)
 
- * [18.1](http://github.com/airbnb/javascript/blob/master/README.md#18.1)
- Use soft tabs set to 4 spaces for the indentation of the code. Although this
- will reduce the efficient line length, this rule will result in easier readability.
- ```js
- // bad
- function() {
- ∙∙const name;
- }
+* [18.1](http://github.com/airbnb/javascript/blob/master/README.md#18.1)
+  Use soft tabs set to 4 spaces for the indentation of the code. Although this
+  will reduce the efficient line length, this rule will result in easier
+  readability.
+  ```js
+  // bad
+  function() {
+  ∙∙const name;
+  }
 
- // bad
- function() {
- ∙const name;
- }
+  // bad
+  function() {
+  ∙const name;
+  }
 
- // good
- function() {
- ∙∙∙∙const name;
- }
- ```
+  // good
+  function() {
+  ∙∙∙∙const name;
+  }
+  ```
 
 ## Additional Rules
 
 ### Blocks
- * [16.3](#16.3) Do not use one-line blocks for conditions. This reduces
- readability by deviating from the usual way people read code, interfering with
- both their habits and their reading flow.
- ```js
- // bad
- if (test)
-    return false
 
- // bad
- if (test) return false;
+* [16.3](#16.3) Do not use one-line blocks for conditions. This reduces
+  readability by deviating from the usual way people read code, interfering with
+  both their habits and their reading flow.
+  ```js
+  // bad
+  if (test)
+     return false
 
- // bad
- if (test) { return false; }
+  // bad
+  if (test) return false;
 
- // good
- if (test) {
-     return false;
- }
- ```
+  // bad
+  if (test) { return false; }
+
+  // good
+  if (test) {
+      return false;
+  }
+  ```
 
 ### Comments
 
- * [17.6](#17.6) Even though single line comments are accepted, try to minimize
- them, as they are often forgotten when updating the code, and can thus easily
- get out of sync with the code itself.
+* [17.6](#17.6) Even though single line comments are accepted, try to minimize
+  them, as they are often forgotten when updating the code, and can thus easily
+  get out of sync with the code itself.
 
- * [17.7](#17.7) No commented code shall find its way to the codebase, as it is
- useless visual clutter with limited meaning most of the time, and is
- often outdated when it has a meaning. Prefer using `TODO` markers within
- comments to explain something instead.
+* [17.7](#17.7) No commented code shall find its way to the codebase, as it is
+  useless visual clutter with limited meaning most of the time, and is
+  often outdated when it has a meaning. Prefer using `TODO` markers within
+  comments to explain something instead.
 
- * [17.8](#17.8) API functions must be preceded by a small
- doxygen/jsdoc-formatted explanatory comment: What is the role of the function,
- what are the parameters, what are the possible return values, and whether it
- can throw exceptions:
- ```js
- // bad
- /*
-  * The blipMyFunc function takes one function in parameter and returns
-  * true only when the given function fits a random criteria using the
-  * parameter string.
-  */
- function blipMyFunc(func, str) {
+* [17.8](#17.8) API functions must be preceded by a small
+  doxygen/jsdoc-formatted explanatory comment: What is the role of the function,
+  what are the parameters, what are the possible return values, and whether it
+  can throw exceptions:
+  ```js
+  // bad
+  /*
+   * The blipMyFunc function takes one function in parameter and returns
+   * true only when the given function fits a random criteria using the
+   * parameter string.
+   */
+  function blipMyFunc(func, str) {
+      ...
+  }
+
+  // good
+  /*
+   * This function blips a function using the parameter string str.
+   * @function
+   * @param {function} func  the function to blip
+   * @param {String} str     the string to blip the function with
+   * @return {boolean} true if func fits a random criteria using str
+   * @return {boolean} false if func does not fit a random criteria using str
+   * @throws {Error} Invalid Parameters
+   */
+  function blipMyFunc(func) {
      ...
- }
+  }
+  ```
+  Complex internal functions shall also be described through such a comment.
 
- // good
- /*
-  * This function blips a function using the parameter string str.
-  * @function
-  * @param {function} func  the function to blip
-  * @param {String} str     the string to blip the function with
-  * @return {boolean} true if func fits a random criteria using str
-  * @return {boolean} false if func does not fit a random criteria using str
-  * @throws {Error} Invalid Parameters
-  */
- function blipMyFunc(func) {
-    ...
- }
- ```
- Complex internal functions shall also be described through such a comment.
+* [17.9](#17.9) Complex parts of the code shall be preceded by a comment block
+  explaining the WHY, the HOW, and the WHAT FOR. This also includes explaining
+  the choice of the method or tool in a similar manner.
 
- * [17.9](#17.9) Complex parts of the code shall be preceded by a comment block
- explaining the WHY, the HOW, and the WHAT FOR. This also includes explaining
- the choice of the method or tool in a similar manner.
-
- * [17.10](#17.10) Avoid paraphrasing the code through the comments, as it is
- not useful and generates noise for code reading (reviews included)
+* [17.10](#17.10) Avoid paraphrasing the code through the comments, as it is
+  not useful and generates noise for code reading (reviews included)
 
 ### ECMAScript 6 Styles
 
- * [27.2](#27.2) In order to use the full power of ES6 with nodeJS v4, the use
- of the npm module [Babel](http://babeljs.io/) is required. It provides a
- seamless way to translate code written in ES6 to ES5 without the intervention
- of the developer. It will provide all the missing ES6 features to nodeJS which
- ES6 support is currently incomplete. Using Babel within your NodeJS code:
- ```js
- 'use strict';
- require('babel/register');
+* [27.2](#27.2) In order to use the full power of ES6 with nodeJS v4, the use
+  of the npm module [Babel](http://babeljs.io/) is required. It provides a
+  seamless way to translate code written in ES6 to ES5 without the intervention
+  of the developer. It will provide all the missing ES6 features to nodeJS which
+  ES6 support is currently incomplete. Using Babel within your NodeJS code:
+  ```js
+  'use strict';
+  require('babel/register');
 
- var MainClass = require('../mainClass.js');
- var prog = MainClass();
- prog.start();
- ```
+  var MainClass = require('../mainClass.js');
+  var prog = MainClass();
+  prog.start();
+  ```
 
- Using Babel for mocha tests:
- ```shell
- Prompt> mocha test.js --compiler js:babel/register
- ```
+  Using Babel for mocha tests:
+  ```shell
+  Prompt> mocha test.js --compiler js:babel/register
+  ```
 
- Only the entry points of the programs are exempted from being written in ES6,
- due to the way Babel is used.
+  Only the entry points of the programs are exempted from being written in ES6,
+  due to the way Babel is used.
 
 ### Coding Style General Rules
 
- * [29.1](#29.1) The usage of the use strict directive is required at the start
- of each file of code:
-```
-'use strict';
-```
+* [29.1](#29.1) The usage of the use strict directive is required at the start
+  of each file of code:
+  ```
+  'use strict';
+  ```
 
- * [29.2](#29.2) No line shall be longer than 80 characters, as such a length
- can provide, within modern working setups, the possibility to work on
- multiple files at the same time on one screen.
+* [29.2](#29.2) No line shall be longer than 80 characters, as such a length
+  can provide, within modern working setups, the possibility to work on
+  multiple files at the same time on one screen.
 
- * [29.3](#29.3) When naming Types, functions and variables, use semantically
- correct names that describe their use and objective.
- ```
- // bad
- let test = true;
+* [29.3](#29.3) When naming Types, functions and variables, use semantically
+  correct names that describe their use and objective.
+  ```
+  // bad
+  let test = true;
 
- // bad
- let human = true;
+  // bad
+  let human = true;
 
- // good
- let userIsHuman = true;
- ```
+  // good
+  let userIsHuman = true;
+  ```
 
 ### Avoiding the Callback Hell
 
- * [30.1](#30.1) No nested callback shall be longer than 5 lines. Any nested
- callback longer than this deserves its own proper function. Any such function
- that requires the binding of arguments from the parent function, should use
- [Currying](https://en.wikipedia.org/wiki/Currying). This is a functionnal
- programming technique that allows the binding of arguments to a function, and
- is available in NodeJS. Those currying functions should have a name explicitly
- telling the developer that they are generating functions, otherwise it might
- become easily confusing for the reader of the code.
- ```js
- // Bad (too many lines/nestings for a nested function definition)
- function do_step1(err, value) {
-     var name = 'step 1';
-     do_async_call(data, function do_step2(status, data) {
-                      console.log(`${name} : ${status} -> ${data}`);
-                      if (data) {
-                        writeFile(data, function writeDone(err) {
-                            if (err) {
-                                throw new Error(`Could not write data to file: ${err.message}`);
-                            }
-                            console.log("Wrote file successfully");
-                        });
-                      }
-                   });
- }
+* [30.1](#30.1) No nested callback shall be longer than 5 lines. Any nested
+  callback longer than this deserves its own proper function. Any such function
+  that requires the binding of arguments from the parent function, should use
+  [Currying](https://en.wikipedia.org/wiki/Currying). This is a functionnal
+  programming technique that allows the binding of arguments to a function, and
+  is available in NodeJS. Those currying functions should have a name explicitly
+  telling the developer that they are generating functions, otherwise it might
+  become easily confusing for the reader of the code.
+  ```js
+  // Bad (too many lines/nestings for a nested function definition)
+  function do_step1(err, value) {
+      var name = 'step 1';
+      do_async_call(data, function do_step2(status, data) {
+                       console.log(`${name} : ${status} -> ${data}`);
+                       if (data) {
+                         writeFile(data, function writeDone(err) {
+                             if (err) {
+                                 throw new Error(`Could not write data to file: ${err.message}`);
+                             }
+                             console.log("Wrote file successfully");
+                         });
+                       }
+                    });
+  }
 
- // Good (Arrow syntax is not prefered, but it's okay)
- function do_step2(name, status, data) {
-     console.log(`${name} : ${status} -> ${data}`);
-     ... // A number of operations here, making the function too long to fit.
- }
+  // Good (Arrow syntax is not prefered, but it's okay)
+  function do_step2(name, status, data) {
+      console.log(`${name} : ${status} -> ${data}`);
+      ... // A number of operations here, making the function too long to fit.
+  }
 
- function do_step1(err, value) {
-     var name = 'step 1';
-     do_async_call(data, (status, data) => { do_step2(name, status, data); });
- }
+  function do_step1(err, value) {
+      var name = 'step 1';
+      do_async_call(data, (status, data) => { do_step2(name, status, data); });
+  }
 
- // Good (Less than 5 lines, so it's ok)
- function do_step1(err, status, data) {
-     var name = 'step 1';
-     do_async_call(data, function do_step2(status, data) {
-                      console.log(`${name} : ${status} -> ${data}`);
-                   });
- }
+  // Good (Less than 5 lines, so it's ok)
+  function do_step1(err, status, data) {
+      var name = 'step 1';
+      do_async_call(data, function do_step2(status, data) {
+                       console.log(`${name} : ${status} -> ${data}`);
+                    });
+  }
 
- // Best (Fully using Currying, the async call is easy to read)
- // Also, the name is explicit in the way it says it generates something)
- function generateStep2(name) {
-     let step2 = function do_step2(status, data) {
-         console.log(`${name} : ${status} -> ${data}`);
-         ... // A number of operations here, making the function too long to fit.
-     };
-     return step2;
- }
+  // Best (Fully using Currying, the async call is easy to read)
+  // Also, the name is explicit in the way it says it generates something)
+  function generateStep2(name) {
+      let step2 = function do_step2(status, data) {
+          console.log(`${name} : ${status} -> ${data}`);
+          ... // A number of operations here, making the function too long to fit.
+      };
+      return step2;
+  }
 
- function do_step1(err, value) {
-     var name = 'step 1';
-     do_async_call(data, generateStep2(name));
- }
- ```
+  function do_step1(err, value) {
+      var name = 'step 1';
+      do_async_call(data, generateStep2(name));
+  }
+  ```
