@@ -10,6 +10,7 @@ const files = commander.parse(process.argv).args;
 // See rules at https://github.com/mivok/markdownlint/blob/master/docs/RULES.md
 const config = {
     "MD004": false,  // Unordered list style
+    "MD007": false,  // Unordered list indentation
     "MD024": false,  // Multiple headers with the same content
     "MD027": false,  // Multiple spaces after blockquote symbol
     "MD029": { "style": "ordered" }, // Ordered list item prefix
