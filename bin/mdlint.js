@@ -12,6 +12,7 @@ const config = {
     "MD004": false,  // Unordered list style
     "MD024": false,  // Multiple headers with the same content
     "MD027": false,  // Multiple spaces after blockquote symbol
+    "MD029": { "style": "ordered" }, // Ordered list item prefix
     "MD034": false,  // Bare URL used
     "MD040": false,  // Fenced code blocks should have a language specified
 };
