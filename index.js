@@ -10,6 +10,7 @@ module.exports = {
     "rules": {
         "strict": [2, "global"],
         "indent": [2, 4],
+        "no-mixed-spaces-and-tabs": 2,
         "max-len": [2, 80, 4],
         "quotes": 0,
         "semi": [2, "always"],
