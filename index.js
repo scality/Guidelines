@@ -23,6 +23,7 @@ module.exports = {
         "id-length": 0,
         "no-shadow": 0,
         "valid-jsdoc": 1,
-        "eol-last": 2
+        "eol-last": 2,
+        "no-multiple-empty-lines": [ 2, { "max": 2, "maxEOF": 1 } ]
     }
 };
