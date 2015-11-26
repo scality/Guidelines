@@ -582,3 +582,50 @@ web browsers. They shall be ignored.
       do_async_call(data, generateStep2(name));
   }
   ```
+
+### Strict equality
+
+* [31.1](#31.1) In the same manner `===` should be used instead of `==`,
+  defaulting missing variables should not be done using `||` unless there is a
+  specific and good reason.
+
+  Example:
+
+  ```js
+  // bad
+  function f(arg, optionalArg, opts = {}) {
+      const message = optionalArg || 'not set';  // what if arg === ''?
+      const rate = opts.rate || 0.1;             // what if arg === 0.0?
+  }
+
+  // bad
+  const useUnicode = ENV['USE_UTF8'] || true;    // what if arg === false?
+
+  // good
+  function f(arg, optionalArg = 'not set', opts = {}) {
+      const rate = opts.rate !== undefined ? opts.rate : 0.1;
+  }
+
+  // good, with some input checking
+  function f(opts = {}) {
+      if (opts.msg !== undefined)
+          assert(typeof opts.msg === 'string', 'opts.msg must be a string');
+
+      const message = opts.msg !== undefined ? opts.msg : 'not set';
+  }
+
+  // good
+  const useUnicode = ENV['USE_UTF8'] !== undefined : ENV['USE_UTF8'] || true;
+  ```
+
+  Why? Because `||` does not check for strict equality. So if an user passes `0`,
+  `false`, `null`, `''`, etc. as an argument, it will be defaulted while it
+  shouldn't be. Try this in a node prompt:
+
+  ```js
+  > 43 || 'DEFAULT'     // 43
+  > 0 || 'DEFAULT'      // 'DEFAULT'
+  > false || 'DEFAULT'  // 'DEFAULT'
+  > null || 'DEFAULT'   // 'DEFAULT'
+  > '' || 'DEFAULT'     // 'DEFAULT'
+  ```
