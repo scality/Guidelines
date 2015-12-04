@@ -135,8 +135,8 @@ submitted.
 
 #### The different types of tests
 
-Three types of tests can be identified: Unit tests, Integration tests and
-Performance tests.
+Four types of tests can be identified: Unit tests, Integration tests, Functional
+tests and Performance tests.
 
 Unit tests are tests that only involve the code expressing the logic of the
 program, confined outside of any external influence (no third party library, no
@@ -146,11 +146,31 @@ piece of code. The shall cover expected usage as well as as many unexpected
 usages as possible.
 
 Integration tests are tests that involve testing any set of logic and
-functionalities together as one system, in order to get as close as possible
-to a real deployment situation. Those tests shall attempt to use the whole
-system in a multitude of different situations. They shall also generate errors
-in a number of different components, in order to prove the reliability of the
-code even in a failing situation.
+functionalities together as one system, in order to get as close as possible to
+a real deployment situation. Here, _integration_ refers to the integration
+between _units_ tested in unit tests. Those tests shall attempt to use the
+different sub-systems in a multitude of different situations. They shall also
+generate errors in a number of different components, in order to prove the
+reliability of the code even in a failing situation. As a rule of thumb, tests
+that involve more than unit-testing, but less than end-to-end are integration
+tests.
+
+Functional tests are end-to-end tests that simulate real interactions with the
+system just as an end-user would. These tests are independent of the underlying
+architecture and must be parameterized/configured in the same manner as the same
+as a production deployment. Some people mix these functional tests with
+integration tests, by not making use of all the components (using mocks or not
+asserting that the action had the expected, persisted side effects), relying on
+causality such as "interaction between A and B is tested and works" and
+"interaction between B and C is tested and works", thus "interaction between A
+and C is tested and works". These assertions are dangerous in a team who owns
+the whole pipeline from prototyping to delivery, and only valid for
+organizations with an external QA team maintaining a separate set of manual or
+automated black-box tests. To have confidence that the tests are accurately
+modeling production, no mocks should be used for replacing parts of the system
+under test, only external parts. Also, the expected _effects_ of the tested
+action on the system should be checked regardless of the code needed to do the
+actual checks (peace of mind has no price!).
 
 Performance tests are tests that involve long run times, that shall collect
 datapoints along the test, in order to generate statistics files (.csv or
@@ -196,6 +216,7 @@ directory:
                            tests/
                            tests/utils
                            tests/unit
+                           tests/integration
                            tests/functional
                            tests/performance
 ```
@@ -284,8 +305,8 @@ the `master` branch.
 The code reviews must include the following checks:
 
 * Ensuring the compliance to the coding style guidelines
-* Ensuring the presence and coverage of tests (unit, functional and
-                                               performance)
+* Ensuring the presence and coverage of tests (unit, integration, functional
+                                               and performance)
 * Ensuring the code is functional and working, through the tests
 * Ensuring the commit messages were properly formatted and as atomic as
   possible
