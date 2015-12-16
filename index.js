@@ -24,6 +24,7 @@ module.exports = {
         "no-shadow": 0,
         "valid-jsdoc": 1,
         "eol-last": 2,
-        "no-multiple-empty-lines": [ 2, { "max": 2, "maxEOF": 1 } ]
+        "no-multiple-empty-lines": [ 2, { "max": 2, "maxEOF": 1 } ],
+        "no-console": 2,
     }
 };
