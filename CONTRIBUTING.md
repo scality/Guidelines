@@ -629,3 +629,114 @@ web browsers. They shall be ignored.
   > null || 'DEFAULT'   // 'DEFAULT'
   > '' || 'DEFAULT'     // 'DEFAULT'
   ```
+
+### Logging
+
+The logging framework used is [werelogs](https://github.com/scality/werelogs)
+which provides per-request logging in addition to module logging. This part of
+the guidelines attempts to standardize log messages across the whole product to
+ease reading, understanding and troubleshooting by being systematic.
+
+#### Request Tracking
+
+When a new request is received, a new per-request logger can be instantiated.
+The `X-Scal-Request-Uids` HTTP header can be used to transmit request
+identifiers from this logger across all the daemons involved when HTTP is the
+chosen protocol. When there is no process barrier crossed or when the protocol
+used is not HTTP, the request identifier can be serialized and carried by
+whatever means necessary (eg. an optional field in protobuf messages or an extra
+argument in APIs).
+
+Usually the request logger is directly used for the whole lifecycle of the
+request. Externally-maintained client libraries can take a serialized request
+identifier as an argument to instanciate their own logger, which can be useful
+for log searching purposes.
+
+Components receiving such request identifiers to participate in per-request
+product-wide logging must be robust to `null` or `undefined` or missing request
+identifiers.
+
+#### Levels
+
+Log messages issued on a per-request logger generally use the `debug` or `trace`
+levels for informative messages, in order to keep the noise low.
+
+When an error happens that can still be recovered or that is due to an invalid
+request (HTTP codes 40x for example), it is logged using the `warn` level.
+
+When an error occurs that is severe enough that the request can not continue and
+must return a failed response to its client, it is logged with the `error` or
+`fatal` level in order to trigger a full log buffer dump by werelogs (in a
+typical configuration). One exception to this rule can be one message logged as
+`info` when a request hits a component, much like Apache's access-log feature.
+
+Log messages issued on a per-module logger can use the `info` level for
+information that is daemon-wide and not too frequent (such as one or two dozen
+messages per minute), and `debug` level for more verbose activity.
+
+#### Phrasing
+
+Log messages are short phrases (fewer than 10 words), starting with a lowercase
+letter. They should use past tense to indicate that something already happened
+and is finished, and present continuous to indicate that something is ongoing.
+No punctuation is needed at the end of the phrase as formatters can later append
+more information to the line.
+
+To avoid string building as much as possible, especially for messages that will
+never be printed, the extra-fields form of werelogs methods can be used, giving
+context outside of phrases. On top of being computationally lighter, this
+approach has the advantage of leaving the formatting to the presentation layer
+(freeing the developer from it), and producing semantically-annotated messages
+that can be analyzed and searched by specialized tools.
+
+Obviously no sensitive information such as access key secrets can make it to
+the logs.
+
+##### Examples
+
+```js
+// bad
+log.info(`compute signature for ${accessKeyId} (${algorithm})`);
+// good
+log.debug('computing request signature', { accessKeyId, date, algorithm });
+
+// bad
+log.info(`host ${server} is down!`);
+// good
+log.error('bucket metadata update failed',
+          { bucketName, server, errorCode: err.code });
+```
+
+#### Fields
+
+Fields added as context to log messages should use consistent names across the
+product to ease searching, matching and building health dashboards. Here is a
+non-exhaustive list of field names to use:
+
+* Generic
+  * `bucketName`
+  * `objectKey`
+  * `partId`
+  * `accessKeyId`
+  * `attemptsLeft`
+  * `totalAttempts` (for the number of times we tried something before deciding
+    to fail)
+  * `duration` (in microsecs)
+  * `date`
+  * `endpoint` (can be any service endpoint formatted as `address:port` for
+    remote service such as `bucketd`, `vaultd`, `repd`, etc)
+  * `method` (method being called in an API)
+* S3 specific
+  * `clientIP`
+  * `namespace`
+  * `sproxydObjectKey`
+* Metadata specific
+  * `raftSession`
+* Vault specific
+  * `algorithm`
+  * `entityType`
+  * `entityContent`
+  * `authenticationDetails`
+  * `stringToSign`
+
+This list will grow as logging context needs are explored.
