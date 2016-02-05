@@ -14,7 +14,7 @@ module.exports = {
         'max-len': [2, 80, 4],
         'quotes': [1, 'single', 'avoid-escape'],
         'semi': [2, 'always'],
-        'curly': 0,
+        'curly': 1,
         'space-before-function-paren': [2, { anonymous: 'always',
                                              named: 'never' }],
         'comma-dangle': 2,
