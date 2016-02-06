@@ -18,7 +18,7 @@ module.exports = {
         "space-before-keywords": 2,
         "space-before-function-paren": [2, {"anonymous": "always",
                                             "named": "never"}],
-        "comma-dangle": 0,
+        "comma-dangle": 1,
         "camelcase": [2, {"properties": "always"}],
         "id-length": 0,
         "no-shadow": 0,
