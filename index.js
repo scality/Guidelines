@@ -28,5 +28,6 @@ module.exports = {
         "no-console": 2,
         "object-shorthand": 1,
         "quote-props": [1, "consistent-as-needed"],
+        "prefer-template": 1,
     }
 };
