@@ -27,5 +27,6 @@ module.exports = {
         "no-multiple-empty-lines": [ 2, { "max": 2, "maxEOF": 1 } ],
         "no-console": 2,
         "object-shorthand": 1,
+        "quote-props": [1, "consistent-as-needed"],
     }
 };
