@@ -135,31 +135,7 @@ submitted.
 
 #### The different types of tests
 
-Three types of tests can be identified: Unit tests, Integration tests and
-Performance tests.
-
-Unit tests are tests that only involve the code expressing the logic of the
-program, confined outside of any external influence (no third party library, no
-systems-related component). At most, it tolerates tests using in-memory
-backends. The role of this type of test is to validate the logic of a written
-piece of code. The shall cover expected usage as well as as many unexpected
-usages as possible.
-
-Integration tests are tests that involve testing any set of logic and
-functionalities together as one system, in order to get as close as possible
-to a real deployment situation. Those tests shall attempt to use the whole
-system in a multitude of different situations. They shall also generate errors
-in a number of different components, in order to prove the reliability of the
-code even in a failing situation.
-
-Performance tests are tests that involve long run times, that shall collect
-datapoints along the test, in order to generate statistics files (.csv or
-anything easily usable), and visual graphics (through gnuplot or similar
-tools). They are used to evaluate the performance of an implementation, and
-evaluate the evolution of the performance over time and over usage of the
-software. This data can be used to detect unreliable or insufficient
-performance within a component, as well as allow the detection of performance
-regressions.
+Please see our [testing guidelines](TESTING.md)
 
 #### Documenting the Integration Test Plan
 
