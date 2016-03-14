@@ -680,7 +680,7 @@ log.debug('computing request signature', { accessKeyId, date, algorithm });
 log.info(`host ${server} is down!`);
 // good
 log.error('bucket metadata update failed',
-          { bucketName, server, errorCode: err.code });
+          { bucketName, server, error: errorObject });
 ```
 
 #### Fields
@@ -702,6 +702,7 @@ non-exhaustive list of field names to use:
   * `endpoint` (can be any service endpoint formatted as `address:port` for
     remote service such as `bucketd`, `vaultd`, `repd`, etc)
   * `method` (method being called in an API)
+  * `error` (as an `arsenal.errors.ArsenalError` object)
 * S3 specific
   * `clientIP`
   * `namespace`
