@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-"use strict"; // eslint-disable-line strict
+'use strict'; // eslint-disable-line strict
 
-const commander = require("commander");
-const markdownlint = require("markdownlint");
+const commander = require('commander');
+const markdownlint = require('markdownlint');
 
 const files = commander.parse(process.argv).args;
 
@@ -13,7 +13,7 @@ const config = {
     MD007: false,  // Unordered list indentation
     MD024: false,  // Multiple headers with the same content
     MD027: false,  // Multiple spaces after blockquote symbol
-    MD029: { style: "ordered" }, // Ordered list item prefix
+    MD029: { style: 'ordered' }, // Ordered list item prefix
     MD034: false,  // Bare URL used
     MD040: false,  // Fenced code blocks should have a language specified
 };
