@@ -20,7 +20,7 @@
         "markdownlint": "^0.0.8"
     },
     "devDependencies": {
-        "babel-eslint": "^5.0.0",
+        "babel-eslint": "^6.0.0",
         "eslint": "^2.4.0",
         "eslint-config-airbnb": "^6.1.0"
     },
