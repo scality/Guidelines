@@ -1,6 +1,6 @@
 {
     "name": "eslint-config-ironman",
-    "version": "1.0.0-beta",
+    "version": "1.0.1-beta2",
     "description": "ESLint config for IronMan coding guidelines",
     "bin": {
         "mdlint": "./bin/mdlint.js"
@@ -20,7 +20,7 @@
         "markdownlint": "^0.0.8"
     },
     "devDependencies": {
-        "babel-eslint": "^5.0.0",
+        "babel-eslint": "^6.0.0",
         "eslint": "^2.4.0",
         "eslint-config-airbnb": "^6.1.0"
     },
