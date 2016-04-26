@@ -354,6 +354,12 @@ web browsers. They shall be ignored.
 
 ### [Whitespace](http://github.com/airbnb/javascript/blob/master/README.md#whitespace)
 
+* [8.2](http://github.com/airbnb/javascript/blob/master/README.md#8.2)
+  If the function body consists of a single expression, you may either omit the braces
+  and use the implicit return or opt to use the braces and an explicit return (whichever
+  you prefer). If the function body contains more than a single expression,
+  keep the braces and use a return statement.
+
 * [18.1](http://github.com/airbnb/javascript/blob/master/README.md#18.1)
   Use soft tabs set to 4 spaces for the indentation of the code. Although this
   will reduce the efficient line length, this rule will result in easier

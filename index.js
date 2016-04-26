@@ -44,7 +44,7 @@ module.exports = {
         'consistent-return': 1,
         'prefer-arrow-callback': 1,
         'no-param-reassign': [1, { props: true }],
-        'arrow-body-style': [1, 'as-needed'],
+        'arrow-body-style': 0,
         'prefer-rest-params': 1,
         'no-unneeded-ternary': [1, { defaultAssignment: false }],
         'arrow-parens': [1, 'as-needed'],
