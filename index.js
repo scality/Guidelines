@@ -55,5 +55,6 @@ module.exports = {
         'prefer-const': 1,
         'array-callback-return': 1,
         'no-underscore-dangle': 0,
+        'newline-per-chained-call': 0,
     },
 };
