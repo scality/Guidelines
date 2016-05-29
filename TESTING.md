@@ -1,4 +1,4 @@
-# Test layout in IronMan projects
+# Test layout in the projects
 
 Guidelines surrounding our testing setup
 
@@ -12,7 +12,7 @@ and **big tests**.
 
 They should be easy to run, using simple npm scripts, to allow for a quick local
 testing. They are launched by a vanilla Circle-CI every time you push a branch
-and will not require [IronMan-CI]. That means they are expected to be found in
+and will not require [CI]. That means they are expected to be found in
 the `tests` directory of the related project.
 
 #### Unit tests
@@ -40,21 +40,21 @@ Belong to the `tests/functional` directory.
 They are meant to test heavily a single component, or test the entire project
 (end-to-end testing). Those are not trivial to set-up, and are only started
 on an @ironman-machine invocation. That invocation starts a build using
-[IronMan-Integration] master branch, using the branch related to the ongoing PR
-for each project. They are thus expected to be found in [IronMan-Integration].
+[Integration] master branch, using the branch related to the ongoing PR
+for each project. They are thus expected to be found in [Integration].
 
 #### Integration tests
 
 These tests are still only assessing a single module of the project. Being
-non-trivial, they require a more advanced setup usually covered by [IronMan-CI]
+non-trivial, they require a more advanced setup usually covered by [CI]
 using `Dockerfile`s and `docker-compose`.
 
 #### End-to-end tests
 
 These tests ensure no breakage in the chain, using our deployment setup,
-[IronMan-Federation]. A small dependency patcher will be used to ensure testing
+[Federation]. A small dependency patcher will be used to ensure testing
 of a supposedly non-breaking setup.
 
-[IronMan-CI]: https://github.com/scality/IronMan-CI
-[IronMan-Integration]: https://github.com/scality/IronMan-Integration
-[IronMan-Federation]: https://github.com/scality/IronMan-Federation
+[CI]: https://github.com/scality/CI
+[Integration]: https://github.com/scality/Integration
+[Federation]: https://github.com/scality/Federation
