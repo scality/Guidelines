@@ -1,7 +1,7 @@
 {
-    "name": "eslint-config-ironman",
+    "name": "eslint-config-scality",
     "version": "1.0.1-beta2",
-    "description": "ESLint config for IronMan coding guidelines",
+    "description": "ESLint config for Scality's Node.js coding guidelines",
     "bin": {
         "mdlint": "./bin/mdlint.js"
     },
@@ -13,7 +13,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/scality/IronMan-Guidelines"
+        "url": "https://github.com/scality/Guidelines"
     },
     "dependencies": {
         "commander": "^1.3.2",
@@ -29,12 +29,12 @@
         "eslintconfig",
         "config",
         "airbnb",
-        "ironman",
+        "scality",
         "javascript",
         "markdown",
         "styleguide"
     ],
     "author": "Adrien Vergé",
     "license": "MIT",
-    "homepage": "https://github.com/scality/IronMan-Guidelines"
+    "homepage": "https://github.com/scality/Guidelines"
 }
