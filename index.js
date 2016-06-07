@@ -1,5 +1,8 @@
 module.exports = {
-    extends: 'airbnb/base',
+    extends: [
+        'eslint-config-airbnb-base',
+        'eslint-config-airbnb-base/rules/strict',
+    ],
 
     env: {
         browser: false,
@@ -51,5 +54,7 @@ module.exports = {
         'no-return-assign': [1, 'always'],
         'prefer-const': 1,
         'array-callback-return': 1,
+        'no-underscore-dangle': 0,
+        'newline-per-chained-call': 0,
     },
 };
