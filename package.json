@@ -1,6 +1,6 @@
 {
     "name": "eslint-config-scality",
-    "version": "1.0.1-beta2",
+    "version": "1.0.0",
     "description": "ESLint config for Scality's Node.js coding guidelines",
     "bin": {
         "mdlint": "./bin/mdlint.js"
@@ -34,7 +34,7 @@
         "markdown",
         "styleguide"
     ],
-    "author": "Adrien Vergé",
-    "license": "MIT",
+    "author": "Giorgio Regni",
+    "license": "Apache-2.0",
     "homepage": "https://github.com/scality/Guidelines"
 }
