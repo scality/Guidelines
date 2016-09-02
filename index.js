@@ -7,6 +7,10 @@ module.exports = {
         mocha: true,
     },
 
+    plugins: [
+        "mocha",
+    ],
+
     rules: {
         'strict': [2, 'global'],
         'indent': [2, 4],
@@ -51,5 +55,6 @@ module.exports = {
         'no-return-assign': [1, 'always'],
         'prefer-const': 1,
         'array-callback-return': 1,
+        "mocha/no-exclusive-tests": 2,
     },
 };

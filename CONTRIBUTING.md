@@ -634,21 +634,21 @@ identifiers.
 
 #### Levels
 
-Log messages issued on a per-request logger generally use the `debug` or `trace`
-levels for informative messages, in order to keep the noise low.
+**FATAL**: logs errors that will abort the process
 
-When an error happens that can still be recovered or that is due to an invalid
-request (HTTP codes 40x for example), it is logged using the `warn` level.
+**ERROR**: logs errors that are not recoverable (other than errors due to user input)
 
-When an error occurs that is severe enough that the request can not continue and
-must return a failed response to its client, it is logged with the `error` or
-`fatal` level in order to trigger a full log buffer dump by werelogs (in a
-typical configuration). One exception to this rule can be one message logged as
-`info` when a request hits a component, much like Apache's access-log feature.
+**WARN**: logs errors that are recoverable (other than errors due to user input)
 
-Log messages issued on a per-module logger can use the `info` level for
-information that is daemon-wide and not too frequent (such as one or two dozen
-messages per minute), and `debug` level for more verbose activity.
+**INFO**: logs info about each request received
+
+**DEBUG**: logs the high level steps and component interactions while processing
+a request and any details of user input errors
+
+**TRACE**: logs variables, parsed data, etc.
+
+Note that an `error` log triggers a full log buffer dump by werelogs (in a
+typical configuration).
 
 #### Phrasing
 
@@ -680,7 +680,7 @@ log.debug('computing request signature', { accessKeyId, date, algorithm });
 log.info(`host ${server} is down!`);
 // good
 log.error('bucket metadata update failed',
-          { bucketName, server, errorCode: err.code });
+          { bucketName, server, error: errorObject });
 ```
 
 #### Fields
@@ -702,6 +702,7 @@ non-exhaustive list of field names to use:
   * `endpoint` (can be any service endpoint formatted as `address:port` for
     remote service such as `bucketd`, `vaultd`, `repd`, etc)
   * `method` (method being called in an API)
+  * `error` (as an `arsenal.errors.ArsenalError` object)
 * S3 specific
   * `clientIP`
   * `namespace`
