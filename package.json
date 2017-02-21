@@ -16,13 +16,13 @@
         "url": "https://github.com/scality/Guidelines"
     },
     "dependencies": {
-        "commander": "^1.3.2",
-        "markdownlint": "^0.0.8"
+        "commander": "1.3.2",
+        "markdownlint": "0.0.8"
     },
     "devDependencies": {
-        "babel-eslint": "^6.0.0",
-        "eslint": "^2.4.0",
-        "eslint-config-airbnb": "^6.1.0"
+        "babel-eslint": "6.1.2",
+        "eslint": "2.13.1",
+        "eslint-config-airbnb": "6.2.0"
     },
     "keywords": [
         "eslint",
