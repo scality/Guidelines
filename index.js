@@ -1,5 +1,5 @@
 module.exports = {
-    extends: 'airbnb/base',
+    extends: 'airbnb-base',
 
     env: {
         browser: false,
@@ -9,15 +9,64 @@ module.exports = {
 
     rules: {
         'strict': [2, 'global'],
-        'indent': [2, 4],
+
+        // Testing changes:
+        'indent': 'off',
+        'indent-legacy': [2, 4],
+        'no-underscore-dangle': 'off',
+        'no-plusplus': 'off',
+        'object-property-newline': 0,
+        'comma-dangle': ['error', {
+            arrays: 'always-multiline',
+            objects: 'always-multiline',
+            imports: 'always-multiline',
+            exports: 'always-multiline',
+            functions: 'never',
+        }],
+        'new-parens': 'off',
+        'lines-around-directive': 'off',
+        'newline-per-chained-call': 'off',
+        'no-mixed-operators': 'off',
+        'no-continue': 'off',
+        'no-bitwise': 'off',
+        'dot-location': 'off',
+        'space-unary-ops': [2, {
+            words: true, // default: requires space after word unary
+            nonwords: false,  // default: does not require space after op unary
+        }],
+        'import/newline-after-import': 'off',
+        'class-methods-use-this': 'off',
+        'spaced-comment': 'off',
+        'no-multi-spaces': 'off',
+        'no-restricted-properties': 'off',
+        'no-restricted-syntax': 'off',
+        'valid-typeof': 'off',
+        'no-extra-boolean-cast': 'off',
+        'no-template-curly-in-string': 'off',
+        'symbol-description': 'off',
+        'function-paren-newline': 'off',
+        'object-curly-newline': 'off',
+        'prefer-destructuring': 'off',
+        'padded-blocks': 'off',
+        'global-require': 'off',
+        'import/no-dynamic-require': 'off',
+        'no-undef-init': 'off',
+        'switch-colon-spacing': 'off',
+        'no-useless-return': 'off',
+        'no-lonely-if': 'off',
+        'prefer-spread': 'off',
+        'import/no-extraneous-dependencies': 'off',
+        // End of testing changes
+
         'no-mixed-spaces-and-tabs': 2,
         'max-len': [2, 80, 4],
         'quotes': [1, 'single', 'avoid-escape'],
         'semi': [2, 'always'],
         'curly': 1,
-        'space-before-function-paren': [2, { anonymous: 'always',
-                                             named: 'never' }],
-        'comma-dangle': 2,
+        'space-before-function-paren': [2, {
+            anonymous: 'always',
+            named: 'never',
+        }],
         'camelcase': [2, { properties: 'always' }],
         'id-length': 0,
         'no-shadow': 0,
