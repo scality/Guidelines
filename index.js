@@ -1,5 +1,6 @@
 module.exports = {
-    extends: 'airbnb/base',
+    plugins: ['eslint-plugin-mocha'],
+    extends: ['airbnb/base', 'mocha'],
 
     env: {
         browser: false,
@@ -51,5 +52,6 @@ module.exports = {
         'no-return-assign': [1, 'always'],
         'prefer-const': 1,
         'array-callback-return': 1,
+	'mocha/no-exclusive-tests': 'error',
     },
 };
