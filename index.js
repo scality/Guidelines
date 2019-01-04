@@ -1,5 +1,5 @@
 module.exports = {
-    extends: 'airbnb/base',
+    extends: 'airbnb-base',
 
     env: {
         browser: false,
@@ -15,8 +15,10 @@ module.exports = {
         'quotes': [1, 'single', 'avoid-escape'],
         'semi': [2, 'always'],
         'curly': 1,
-        'space-before-function-paren': [2, { anonymous: 'always',
-                                             named: 'never' }],
+        'space-before-function-paren': [
+            2,
+            { anonymous: 'always', named: 'never' },
+        ],
         'comma-dangle': 2,
         'camelcase': [2, { properties: 'always' }],
         'id-length': 0,

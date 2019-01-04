@@ -415,6 +415,7 @@ web browsers. They shall be ignored.
   Use soft tabs set to 4 spaces for the indentation of the code. Although this
   will reduce the efficient line length, this rule will result in easier
   readability.
+
   ```js
   // bad
   function() {
@@ -439,6 +440,7 @@ web browsers. They shall be ignored.
 * [16.3](#16.3) Do not use one-line blocks for conditions. This reduces
   readability by deviating from the usual way people read code, interfering with
   both their habits and their reading flow.
+
   ```js
   // bad
   if (test)
@@ -471,6 +473,7 @@ web browsers. They shall be ignored.
   doxygen/jsdoc-formatted explanatory comment: What is the role of the function,
   what are the parameters, what are the possible return values, and whether it
   can throw exceptions:
+
   ```js
   // bad
   /*
@@ -496,6 +499,7 @@ web browsers. They shall be ignored.
      ...
   }
   ```
+
   Complex internal functions shall also be described through such a comment.
 
 * [17.9](#17.9) Complex parts of the code shall be preceded by a comment block
@@ -512,6 +516,7 @@ web browsers. They shall be ignored.
   seamless way to translate code written in ES6 to ES5 without the intervention
   of the developer. It will provide all the missing ES6 features to nodeJS which
   ES6 support is currently incomplete. Using Babel within your NodeJS code:
+
   ```js
   'use strict';
   require('babel/register');
@@ -522,6 +527,7 @@ web browsers. They shall be ignored.
   ```
 
   Using Babel for mocha tests:
+
   ```shell
   Prompt> mocha test.js --compiler js:babel/register
   ```
@@ -533,6 +539,7 @@ web browsers. They shall be ignored.
 
 * [29.1](#29.1) The usage of the use strict directive is required at the start
   of each file of code:
+
   ```
   'use strict';
   ```
@@ -543,6 +550,7 @@ web browsers. They shall be ignored.
 
 * [29.3](#29.3) When naming Types, functions and variables, use semantically
   correct names that describe their use and objective.
+
   ```
   // bad
   let test = true;
@@ -564,6 +572,7 @@ web browsers. They shall be ignored.
   is available in NodeJS. Those currying functions should have a name explicitly
   telling the developer that they are generating functions, otherwise it might
   become easily confusing for the reader of the code.
+
   ```js
   // Bad (too many lines/nestings for a nested function definition)
   function do_step1(err, value) {
