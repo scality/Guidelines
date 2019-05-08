@@ -11,7 +11,7 @@ module.exports = {
         'strict': [2, 'global'],
         'indent': [2, 4],
         'no-mixed-spaces-and-tabs': 2,
-        'max-len': [2, 80, 4],
+        'max-len': [2, 120, 4],
         'quotes': [1, 'single', 'avoid-escape'],
         'semi': [2, 'always'],
         'curly': 1,
