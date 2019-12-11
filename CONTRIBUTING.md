@@ -6,64 +6,84 @@ stable branches.
 
 ## Workflow
 
-The worklow we define here has multiple purposes, and this document will go
-over what rule is here to ensure each of these purposes:
-
-* Define one and only one path to add code into the codebase
-* Allow the maintenance of multiple releases at the same time
-* Work efficiently as a team
-* Streamline all the development in one rolling-release branch
-
-First, have a cookie, and look at this magnificient ASCII workflow
-representation. It should help you identify how contributions are made, where
-and what does the code pass through, and how we maintain releases.
+GitWaterFlow (GWF) is a combination of a branching model and its associated tooling, featuring a transactional view on multi-branch changesets supported by none of the tools and models previously described. GWF tends to ban “backporting” in favor of “(forward) porting”. The term “porting” is employed to describe the act of developing a changeset on an old — yet active — version branch and subsequently merging it on newer ones.
 
 ```ascii
-   WIP Branches         master        Release Branches
-                   |      |
-                   |      |
-                   |      X
-          dev/FT/color  / |
-        +<---<----<---<+  |
-        |          |      |
-        |          +>->+  |
-        X               \ |
-        |                 X
-        X  dev/BF/flow  / |
-    +<--|-<---<---<---<+  |
-    |   X                 |
-    X   |  Pull Request   |
-    |   +>---->---->-->+  |
-    X  code review + CI \ |
-    |     -> merge PR     X
-    |                     | \   stable/1.0
-    X                     |  +>--->--->--->+
-    |    Pull Request     |                |
-    +>--->---->--->--->+  |                |
-      code review + CI  \ |                |
-                          X>--->---->-->-->X # Bump version to 1.0.1
-                          | cherry-pick -x |
-                          |                |
-                          |                |
-                          v                v
+                    feature/foo
++----+        +--->X                           
+| a. |        |                               
++----+        |     development/1.0                          
+     ---->-X--+--->X                           
+                   ++                          
+                    |                          
+                    v          development/1.1              
+     -------------->X-------->X                
+                              +-+              
+                                |              
+                                v      development/2.0      
+     -------------------------->X---->X     
+
+                                             
++----+          feature/foo                                  
+| b. |     +-->X----+        w/1.0/feature/foo                     
++----+     |        +---->(X)---+                
+           |              |     |                 
+   --->X---+-->X+---------|     |                 
+                |development/1.0|    w/1.1/feature/foo             
+                ++              +-(Y)-------+     
+                 |                |         |     
+  ----------------X------>X-------+         |     
+                           |development/1.1 |      w/2.0/feature/foo
+                           +++              +---(Z)
+                             |                   |
+  -------------------------->X----->X------------+
+                                     development/2.0  
+                                          
+
++----+                                        
+| c. |       +-->X--+                          
++----+       |      |     development/1.0                     
+    ----->X--+-->X--+->(X)--------+            
+                  |               |            
+                  ++              |            
+                   |              v  development/1.1         
+    ---------------->X----->X---->(Y)-------+  
+                             +-+            |  
+                               |            |  
+                               v            v. development/2.0
+    --------------------------->X-----X---->(Z)
+Fig. 1. Forward-porting patches on multiple development branches
 ```
+### Development Branches
 
-As you can see, we have three main types of branches, each with a specific
-responsibility and its specific rules.
+GWF comes with a versioning scheme that is inspired by semantic versioning (semver). Basically, version numbers are in the form major.minor.patch. patch is incremented only when backward compatible bug fixes are being added, minor is incremented when backward-compatible features are added, and major is incremented with major backward incompatible changes.
 
-## Restrictions of the master branch
+In GWF, every living minor version has a corresponding development/major.minor branch, each of which must  be included in newer ones. In fig. 1  a development/1.0 is included into development/1.1, which in turn is included in development 2.0. Consequently, a GWF-compliant repository has a waterfall-like representation, hence the name “GitWaterFlow”.
 
-The master branch is a very specific branch in our workflow. No commit must
-ever go directly into the master branch, and the code shall follow one and only
-one path to get into the master branch.
+As GWF is based on ‘porting’, feature branches do not necessarily start from the latest development branch. In fact, prior to start coding a developer must determine the oldest development/* branch his code should land upon (refer to fig.1.a). Once ready to merge, the developer creates a pull request that targets the development branch from which he started. A gating and merging bot will ensure that the feature branch will be merged not only on the destination but also on all the subsequent development branches.
+
+### Only The Bot Can Merge
+
+Bert-E is the gatekeeping and merging bot Scality developed in-house to automate GWF, its purpose being to help developers merge their feature branches on multiple development branches. The tool is written in Python and designed to function as a stateless idempotent bot. It is triggered via Bitbucket/GitHub webhooks after each pull request change occurrence (creation, commit, peer approval, comment, etc.).
+
+Bert-E helps the developer prepare his pull request for merging. It interacts directly with the developer through GitHub’s (or Bitbucket) comment system via the pull-request timeline, pushing contextualized messages on the current status and next expected actions. In Scality’s case, Bert-E ensures that the pull request has at least two approvals from peers before it merges the contribution. In the future, Bert-E will also check that the JIRA fixVersion field is correct for the target branches to help product managers keep track of progress. Bert-E usually replies in less than 50 seconds, thus creating a trial-and-error process with a fast feedback loop that is ideal in onboarding newcomers to the ticketing process.
+
+### Integration Branches
+
+In parallel with the previously described process, Bert-E begins trying to merge on the subsequent development branches by creating integration branches named w/major.minor/feature/foo, after both the originating feature branch and the target development branch (refer to fig.1.b). Every time Bert-E is triggered, it checks to ensure that the w/* branches are ahead of both the feature branch and the corresponding development branches (updating them following the same process when this is not the case).
+
+Every change on a w/* branch triggers a build/test session. When the pull request fulfills all the requirements previously described, and when the builds are green on all the w/* branches, Bert-E fast-forwards all the development branches to point to the corresponding w/* branches in an atomic transaction, as depicted in fig.1.c.
+
+Note that if another pull request is merged in the interim, Bert-E will not be able to push and must re-update its w/* branches and repeat the build/test process.
+
+Source code and documentation for [Bert-E](https://bitbucket.org/scality/bert-e/) and [Eve](https://bitbucket.org/scality/eve/) are available on Bitbucket. If you have questions, please ask them on Zenko forum.
 
 ## Coding for the project
 
 ### Branching Guidelines
 
 In order to work on the Project, any contributor will be asked to create
-separate branches for each task. Theses branches are part of the "Work In
-Progress" aka `WIP` branches. A contributor must thus create a branch, that he
+separate branches for each task. A contributor must thus create a branch, that he
 can push into the project's repository. He can then start working, and commit
 following the [guidelines](#committing-guidelines).
 
@@ -71,48 +91,28 @@ The branch name shall follow a very concise naming scheme, in order for an
 **automatic CI system to be able to start builds on every development branch**:
 
 ```
-dev/tag/name
+tag/JiraProjectName-TicketNumber_name
 ```
 
-The `WIP` branch name must start by a branch type, on which depends the rest of
-the naming scheme for the branch.
-The following branch types are currently defined:
-
-* dev: Development work
-* proto: Prototype development (is not exempted from following the
-  contributing guidelines, except for the testing aspect, as it provides only
-  prototypes and not production-ready code)
-
-The dev `WIP` branch names must start by the branch type (`dev/`, followed by a
-`tag` defined to describe the type of task the branch is associated with, then
-followed by a self-explanatory `name` for the branch. The following Tags are
+The development branch names must start by the `tag` defined to describe the type of task the branch is associated with, then followed by Jira ticket number and self-explanatory `name` for the branch. The following Tags are
 currently allowed:
 
-* FT: Feature branch
-* BF: Bugfix branch
-* HF: Hotfix branch (fundamentaly an emergency Bugfix branch)
-* DOC: Documentation branch
-* CLEANUP: Code Cleanup/Refactoring branch
+* feature: Feature branch
+* bugfix: Bugfix branch
+* hotfix: Hotfix branch (fundamentaly an emergency Bugfix branch)
+* documentation: Documentation branch
+* improvement: Code Cleanup/Refactoring branch
 * ...
 
 For instance, if contributor A was going to work on the feature adding
 squeaking sounds to his favourite VCS, he could name his branch:
 
 ```
-dev/FT/SqueakOnPush
+feature/ZENKOIO-123_SqueakOnPush
 ```
 
 This would mean that it is a working branch for a Feature called "Squeak On
 Push".
-
-In the same fashion, the prototype branch names must start by the branch type
-(`proto/`, followed by a self-explanatory `name` for the branch's explorated
-feature. For instance, if contributor A was going to experiment on a new
-algorithm, he could name his branch:
-
-```
-proto/AwesomeAlgorithm
-```
 
 When the contributor's work (feature/bugfix/hotfix) is complete, he can create
 a pull request from his branch into the master branch. Then, the code merging
@@ -121,7 +121,7 @@ master](#merging-code-into-the-master) starts.
 
 ### Development Guidelines
 
-With his own `WIP` branch, contributor A can now manage the branch's code as
+With his own branch, contributor A can now manage the branch's code as
 he wishes, as the branch is his own responsibility, within the constraints of
 the project. These constraints include:
 
@@ -204,12 +204,13 @@ tested, including the module, the function, and the specific case tested.
 
 ### Committing Guidelines
 
-With his own `WIP` branch, contributor A can commit and manage the branch's
+With his own branch, contributor A can commit and manage the branch's
 history as he wishes, as the branch is his own responsibility, within the
 constraints of the project. These constraints for the commits include:
 
 * Commit Message Formatting Policy
 * Peer validation of the commit's atomicity and meaningfulness
+* Squashing all commits into one messege before doing pull request
 
 It is asked of every contributor to provide commit messages as clear as
 possible, while attempting to make one commit comply to the following
@@ -222,21 +223,20 @@ The commit message shall follow a **standardized formatting, that will be checke
 automatically by a VCS hook on the commit**.
 
 The first line of the commit message (often called the one-liner) shall provide
-the essential information about the commit itself. It must thus provide a tag
-describing the type of development task accomplished and a short imperative
-sentence to describe the essence of the commit. Then, if more details seem
-necessary or useful, one line must be left empty (to follow the consensual git
+the essential information about the commit itself. **It must thus provide a tag
+describing the type of development task accomplished, colon, one space and a short imperative
+sentence to describe the essence of the commit (55 characters)**.
+
+```ascii
+feature: what it does
+``` 
+If more details seem necessary or useful, one line must be left empty (to follow the consensual git
 commit way), and either a paragraph, a list of items, or both can be written to
 provide insight into the details of the commit. Those details can include
 describing the workings of the change, explain a design choice, or providing a
 tracker reference (issue number or bugreport link).
 
-Sticking with the earlier example of the Squeak-On-Push mobile app feature, we
-could have a commit formatted such as:
-
 ```ascii
-FT: Provide an API (hook) to add custom actions on VCS push
-
 Related to issue #245
 * Provide a simple way to hook a callback into the new OnPush API
 * The hook is called whenever the history is pushed to the central system
