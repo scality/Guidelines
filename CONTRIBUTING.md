@@ -270,8 +270,8 @@ conditions:
 * Provide one and only one feature/bugfix/meaningful change
 * Provide working unit and functional tests associated to the change.
 
-The commit message shall follow a **standardized formatting, that will be checked
-automatically by a VCS hook on the commit**.
+The commit message shall follow a **standardized formatting,
+that will be checked automatically by a VCS hook on the commit**.
 
 The first line of the commit message (often called the one-liner) shall
 provide the essential information about the commit itself. **It must thus
@@ -287,7 +287,8 @@ If more details seem necessary or useful, one line must be left empty
 (to follow the consensual git commit way), and either a paragraph,
 a list of items, or both can be written to provide insight into the
 details of the commit. Those details can include describing the workings
-of the change, explain a design choice, or providing a tracker reference (issue number or bugreport link).
+of the change, explain a design choice, or providing a tracker reference
+(issue number or bugreport link).
 
 ```ascii
 Related to issue #245
