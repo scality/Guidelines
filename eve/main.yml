@@ -20,11 +20,11 @@ stages:
           retryFetch: True
           haltOnFailure: True
       - ShellCommand:
-          name: npm install
-          command: npm install
+          name: yarn install --frozen-lockfile
+          command: yarn install --frozen-lockfile
       - ShellCommand:
           name: run static analysis tools on markdown
-          command: npm run lint_md
+          command: yarn run lint_md
       - ShellCommand:
           name: run static analysis tools on code
-          command: npm run lint
+          command: yarn run lint
