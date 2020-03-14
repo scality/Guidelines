@@ -6,6 +6,9 @@
         "mdlint": "./bin/mdlint.js"
     },
     "main": "index.js",
+    "engines": {
+        "node": ">=10"
+    },
     "scripts": {
         "test": "yarn run --silent lint && yarn run --silent lint_md",
         "lint": "node_modules/.bin/eslint -c index.js $(git ls-files '*.js')",
