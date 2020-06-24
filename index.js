@@ -1,6 +1,10 @@
 module.exports = {
     extends: 'airbnb-base',
 
+    parserOptions: {
+        ecmaVersion: 8,
+    },
+
     env: {
         browser: false,
         node: true,
@@ -49,7 +53,7 @@ module.exports = {
         'arrow-body-style': [1, 'as-needed'],
         'prefer-rest-params': 1,
         'no-unneeded-ternary': [1, { defaultAssignment: false }],
-        'arrow-parens': [1, 'as-needed'],
+        'arrow-parens': 0,
         'no-return-assign': [1, 'always'],
         'prefer-const': 1,
         'array-callback-return': 1,
