@@ -13,6 +13,7 @@ const config = {
     MD029: { style: 'ordered' }, // Ordered list item prefix
     MD034: false, // Bare URL used
     MD040: false, // Fenced code blocks should have a language specified
+    MD013: { tables: false }, // Line length check disabled for tables
 };
 
 const result = markdownlint.sync({ files, config });
