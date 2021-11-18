@@ -100,7 +100,7 @@ module.exports = {
             2,
             'always'
         ],
-        'curly': 1,
+        'curly': [1, 'all'],
         'no-mixed-spaces-and-tabs': 2,
         'max-len': [
             2,
