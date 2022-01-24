@@ -40,5 +40,8 @@
     ],
     "author": "Giorgio Regni",
     "license": "Apache-2.0",
-    "homepage": "https://github.com/scality/Guidelines"
+    "homepage": "https://github.com/scality/Guidelines",
+    "engines": {
+        "node": ">=16"
+    }
 }
