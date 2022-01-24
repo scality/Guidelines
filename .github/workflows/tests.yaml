@@ -16,8 +16,8 @@ jobs:
       with:
         node-version: '8'
     - name: install dependencies
-      run: npm install
+      run: yarn install --frozen-lockfile
     - name: lint markdown
-      run: npm run lint_md
+      run: yarn lint_md
     - name: lint javascript
-      run: npm run lint
+      run: yarn lint
