@@ -1,8 +1,14 @@
 #!/usr/bin/env node
-const commander = require('commander');
+const { Command } = require('commander');
 const markdownlint = require('markdownlint');
 
-const files = commander.parse(process.argv).args;
+const program = new Command();
+
+program
+    .argument('<files...>', 'Markdown files to lint')
+    .parse(process.argv);
+
+const files = program.args;
 
 // See rules at https://github.com/mivok/markdownlint/blob/master/docs/RULES.md
 const config = {
