@@ -5,10 +5,10 @@
     "bin": {
         "mdlint": "./bin/mdlint.js"
     },
-    "main": "index.js",
+    "main": "index.mjs",
     "scripts": {
         "test": "yarn run --silent lint && yarn run --silent lint_md",
-        "lint": "node_modules/.bin/eslint -c index.js $(git ls-files '*.js')",
+        "lint": "eslint -c index.mjs $(git ls-files '*.mjs')",
         "lint_md": "node bin/mdlint.js $(git ls-files '*.md')"
     },
     "repository": {
@@ -21,9 +21,12 @@
     },
     "devDependencies": {
         "@babel/eslint-parser": "^7.25.1",
-        "eslint": "8.57.0",
+        "@eslint/eslintrc": "^3.1.0",
+        "@eslint/js": "^9.9.1",
+        "eslint": "^9.9.1",
         "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-plugin-import": "^2.29.1"
+        "eslint-plugin-import": "^2.29.1",
+        "globals": "^15.9.0"
     },
     "keywords": [
         "eslint",
