@@ -1,62 +1,62 @@
-const globals = require("globals");
-const js = require("@eslint/js");
-const { fixupConfigRules } = require("@eslint/compat");
+const globals = require('globals');
+const js = require('@eslint/js');
+const { fixupConfigRules } = require('@eslint/compat');
 
 const {
     FlatCompat,
-} = require("@eslint/eslintrc");
+} = require('@eslint/eslintrc');
 
 const compat = new FlatCompat({
     baseDirectory: __dirname,
     recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
+    allConfig: js.configs.all,
 });
 
-module.exports = [...fixupConfigRules(compat.extends("airbnb-base")), {
+module.exports = [...fixupConfigRules(compat.extends('airbnb-base')), {
     languageOptions: {
         globals: {
-            ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, "off"])),
+            ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, 'off'])),
             ...globals.node,
             ...globals.mocha,
         },
     },
 
     rules: {
-        strict: [2, "global"],
-        indent: [2, 4],
-        "no-mixed-spaces-and-tabs": 2,
-        "max-len": [2, 120, 4],
-        quotes: [1, "single", "avoid-escape"],
-        semi: [2, "always"],
-        curly: 1,
+        'strict': [2, 'global'],
+        'indent': [2, 4],
+        'no-mixed-spaces-and-tabs': 2,
+        'max-len': [2, 120, 4],
+        'quotes': [1, 'single', 'avoid-escape'],
+        'semi': [2, 'always'],
+        'curly': 1,
 
-        "space-before-function-paren": [2, {
-            anonymous: "always",
-            named: "never",
+        'space-before-function-paren': [2, {
+            anonymous: 'always',
+            named: 'never',
         }],
 
-        "comma-dangle": 2,
+        'comma-dangle': 2,
 
-        camelcase: [2, {
-            properties: "always",
+        'camelcase': [2, {
+            properties: 'always',
         }],
 
-        "id-length": 0,
-        "no-shadow": 0,
-        "eol-last": 2,
+        'id-length': 0,
+        'no-shadow': 0,
+        'eol-last': 2,
 
-        "no-multiple-empty-lines": [2, {
+        'no-multiple-empty-lines': [2, {
             max: 2,
             maxEOF: 1,
         }],
 
-        "no-console": 2,
-        "object-shorthand": 2,
-        "quote-props": [2, "consistent-as-needed"],
-        "prefer-template": 2,
-        "array-bracket-spacing": [1, "never"],
+        'no-console': 2,
+        'object-shorthand': 2,
+        'quote-props': [2, 'consistent-as-needed'],
+        'prefer-template': 2,
+        'array-bracket-spacing': [1, 'never'],
 
-        "keyword-spacing": [1, {
+        'keyword-spacing': [1, {
             before: true,
             after: true,
 
@@ -75,31 +75,31 @@ module.exports = [...fixupConfigRules(compat.extends("airbnb-base")), {
             },
         }],
 
-        "linebreak-style": [1, "unix"],
+        'linebreak-style': [1, 'unix'],
 
-        "new-cap": [1, {
+        'new-cap': [1, {
             newIsCap: true,
         }],
 
-        "space-in-parens": [1, "never"],
-        "consistent-return": 1,
-        "prefer-arrow-callback": 1,
+        'space-in-parens': [1, 'never'],
+        'consistent-return': 1,
+        'prefer-arrow-callback': 1,
 
-        "no-param-reassign": [1, {
+        'no-param-reassign': [1, {
             props: true,
         }],
 
-        "arrow-body-style": [1, "as-needed"],
-        "prefer-rest-params": 1,
+        'arrow-body-style': [1, 'as-needed'],
+        'prefer-rest-params': 1,
 
-        "no-unneeded-ternary": [1, {
+        'no-unneeded-ternary': [1, {
             defaultAssignment: false,
         }],
 
-        "arrow-parens": [1, "as-needed"],
-        "no-return-assign": [1, "always"],
-        "prefer-const": 1,
-        "array-callback-return": 1,
-        "no-underscore-dangle": 0,
+        'arrow-parens': [1, 'as-needed'],
+        'no-return-assign': [1, 'always'],
+        'prefer-const': 1,
+        'array-callback-return': 1,
+        'no-underscore-dangle': 0,
     },
 }];
