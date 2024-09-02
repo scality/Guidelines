@@ -113,9 +113,9 @@ triggered, it checks to ensure that the w/* branches are ahead of both the
 feature branch and the corresponding development branches (updating them
 following the same process when this is not the case).
 
-Every change on a w/* branch triggers a build/test session. When the pull
+Every change on a `w/*` branch triggers a build/test session. When the pull
 request fulfills all the requirements previously described, and when the
-builds are green on all the w/* branches, Bert-E fast-forwards all the
+builds are green on all the `w/*` branches, Bert-E fast-forwards all the
 development branches to point to the corresponding w/* branches in an atomic
 transaction, as depicted in fig.1.c.
 
@@ -491,7 +491,7 @@ web browsers. They shall be ignored.
 
 ### Blocks
 
-* [16.3](#16.3) Do not use one-line blocks for conditions. This reduces
+* **16.3** Do not use one-line blocks for conditions. This reduces
   readability by deviating from the usual way people read code, interfering with
   both their habits and their reading flow.
 
@@ -514,16 +514,16 @@ web browsers. They shall be ignored.
 
 ### Comments
 
-* [17.6](#17.6) Even though single line comments are accepted, try to minimize
+* **17.6** Even though single line comments are accepted, try to minimize
   them, as they are often forgotten when updating the code, and can thus easily
   get out of sync with the code itself.
 
-* [17.7](#17.7) No commented code shall find its way to the codebase, as it is
+* **17.7** No commented code shall find its way to the codebase, as it is
   useless visual clutter with limited meaning most of the time, and is
   often outdated when it has a meaning. Prefer using `TODO` markers within
   comments to explain something instead.
 
-* [17.8](#17.8) API functions must be preceded by a small
+* **17.8** API functions must be preceded by a small
   doxygen/jsdoc-formatted explanatory comment: What is the role of the function,
   what are the parameters, what are the possible return values, and whether it
   can throw exceptions:
@@ -556,16 +556,16 @@ web browsers. They shall be ignored.
 
   Complex internal functions shall also be described through such a comment.
 
-* [17.9](#17.9) Complex parts of the code shall be preceded by a comment block
+* **17.9** Complex parts of the code shall be preceded by a comment block
   explaining the WHY, the HOW, and the WHAT FOR. This also includes explaining
   the choice of the method or tool in a similar manner.
 
-* [17.10](#17.10) Avoid paraphrasing the code through the comments, as it is
+* **17.10** Avoid paraphrasing the code through the comments, as it is
   not useful and generates noise for code reading (reviews included)
 
 ### ECMAScript 6 Styles
 
-* [27.2](#27.2) In order to use the full power of ES6 with nodeJS v4, the use
+* **27.2** In order to use the full power of ES6 with nodeJS v4, the use
   of the npm module [Babel](http://babeljs.io/) is required. It provides a
   seamless way to translate code written in ES6 to ES5 without the intervention
   of the developer. It will provide all the missing ES6 features to nodeJS which
@@ -591,18 +591,18 @@ web browsers. They shall be ignored.
 
 ### Coding Style General Rules
 
-* [29.1](#29.1) The usage of the use strict directive is required at the start
+* **29.1** The usage of the use strict directive is required at the start
   of each file of code:
 
   ```
   'use strict';
   ```
 
-* [29.2](#29.2) No line shall be longer than 80 characters, as such a length
+* **29.2** No line shall be longer than 80 characters, as such a length
   can provide, within modern working setups, the possibility to work on
   multiple files at the same time on one screen.
 
-* [29.3](#29.3) When naming Types, functions and variables, use semantically
+* **29.3** When naming Types, functions and variables, use semantically
   correct names that describe their use and objective.
 
   ```
@@ -618,7 +618,7 @@ web browsers. They shall be ignored.
 
 ### Avoiding the Callback Hell
 
-* [30.1](#30.1) No nested callback shall be longer than 5 lines. Any nested
+* **30.1** No nested callback shall be longer than 5 lines. Any nested
   callback longer than this deserves its own proper function. Any such function
   that requires the binding of arguments from the parent function, should use
   [Currying](https://en.wikipedia.org/wiki/Currying). This is a functionnal
@@ -681,7 +681,7 @@ web browsers. They shall be ignored.
 
 ### Strict equality
 
-* [31.1](#31.1) In the same manner `===` should be used instead of `==`,
+* **31.1** In the same manner `===` should be used instead of `==`,
   defaulting missing variables should not be done using `||` unless there is a
   specific and good reason.
 
