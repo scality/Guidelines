@@ -8,7 +8,7 @@
     "main": "index.js",
     "scripts": {
         "test": "yarn run --silent lint && yarn run --silent lint_md",
-        "lint": "eslint -c index.js $(git ls-files 'bin/*.js')",
+        "lint": "eslint -c eslint.config.cjs $(git ls-files '*.js')",
         "lint_md": "node bin/mdlint.js $(git ls-files '*.md')"
     },
     "repository": {

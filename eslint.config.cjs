@@ -1,10 +1,12 @@
 const globals = require('globals');
 
 module.exports = {
-    globals: {
-        ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, 'off'])),
-        ...globals.node,
-        ...globals.mocha,
+    languageOptions: {
+        globals: {
+            ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, 'off'])),
+            ...globals.node,
+            ...globals.mocha,
+        },
     },
     rules: {
         'constructor-super': 'error',
@@ -71,7 +73,7 @@ module.exports = {
         'camelcase': [
             2,
             {
-                properties: 'always'
+                'properties': 'always'
             }
         ],
         'indent': [
@@ -97,8 +99,8 @@ module.exports = {
         'space-before-function-paren': [
             2,
             {
-                anonymous: 'always',
-                named: 'never'
+                'anonymous': 'always',
+                'named': 'never'
             }
         ],
         'id-length': 0,
@@ -107,8 +109,8 @@ module.exports = {
         'no-multiple-empty-lines': [
             2,
             {
-                max: 2,
-                maxEOF: 1
+                'max': 2,
+                'maxEOF': 1
             }
         ],
         'no-console': 2,
@@ -125,17 +127,17 @@ module.exports = {
         'keyword-spacing': [
             1,
             {
-                before: true,
-                after: true,
-                overrides: {
-                    return: {
-                        after: true
+                'before': true,
+                'after': true,
+                'overrides': {
+                    'return': {
+                        'after': true
                     },
-                    throw: {
-                        after: true
+                    'throw': {
+                        'after': true
                     },
-                    case: {
-                        after: true
+                    'case': {
+                        'after': true
                     }
                 }
             }
@@ -147,7 +149,7 @@ module.exports = {
         'new-cap': [
             1,
             {
-                newIsCap: true
+                'newIsCap': true
             }
         ],
         'space-in-parens': [
@@ -159,7 +161,7 @@ module.exports = {
         'no-param-reassign': [
             1,
             {
-                props: true
+                'props': true
             }
         ],
         'arrow-body-style': [
@@ -170,7 +172,7 @@ module.exports = {
         'no-unneeded-ternary': [
             1,
             {
-                defaultAssignment: false
+                'defaultAssignment': false
             }
         ],
         'arrow-parens': [
