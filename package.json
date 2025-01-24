@@ -1,5 +1,5 @@
 {
-    "name": "eslint-config-scality",
+    "name": "@scality/guidelines",
     "version": "7.10.2",
     "description": "ESLint config for Scality's Node.js coding guidelines",
     "bin": {
@@ -39,5 +39,8 @@
     "homepage": "https://github.com/scality/Guidelines",
     "engines": {
         "node": ">=16"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
