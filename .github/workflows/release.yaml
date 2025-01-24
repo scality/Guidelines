@@ -1,0 +1,80 @@
+---
+name: Release
+
+run-name: release ${{ inputs.tag }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to be released'
+        required: true
+
+jobs:
+  publish:
+    permissions:
+      packages: write
+      id-token: write
+      contents: read
+    env:
+      VERSION: ${{ inputs.tag }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set env vars
+        run: |
+          echo PKG_VERSION="$(jq -r .version < package.json)" >> $GITHUB_ENV
+          echo PKG_NAME="$(jq -r .name < package.json)" >> $GITHUB_ENV
+          echo PKG_BASENAME="$(basename $(jq -r .name < package.json))" >> $GITHUB_ENV
+      - name: Ensure the branch is protected
+        run: |
+          if [[ "${{ github.ref_protected }}" = "false" ]]; then
+            echo "::error::The branch ${{ github.ref }} is not protected"
+            exit 1
+          fi
+      - name: Ensure tag has not been released
+        run: |
+          TAG_EXISTS=$(git tag -l "${{ inputs.tag }}")
+          if [[ -n "$TAG_EXISTS" ]]; then
+            echo "::error::The tag ${{ inputs.tag }} already exists"
+            exit 1
+          fi
+      - name: Ensure version is properly set
+        run: |
+           if ! [[ "$PKG_VERSION" = "$VERSION" ]]; then
+             echo "::error file=package.json,line=$(sed -n '/"version":/=' package.json)::The tag $VERSION must match the version $PKG_VERSION specified in package.json"
+             exit 1
+           fi
+      - name: Setup node with GitHub Packages
+        uses: actions/setup-node@v4
+        with:
+          cache: yarn
+          node-version: '16'
+          registry-url: https://npm.pkg.github.com
+      - name: install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Publish to GitHub Packages
+        run: npm publish --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup node with npmjs.org
+        uses: actions/setup-node@v4
+        with:
+          registry-url: https://registry.npmjs.org
+      - name: Publish to npmjs.org
+        run: npm publish --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ inputs.tag }}
+          name: Release ${{ inputs.tag }}
+          target_commitish: ${{ github.sha }}
+          append_body: |
+            Github Packages: https://github.com/${{ github.repository }}/pkgs/npm/${{ env.PKG_BASENAME }}
+            npmjs: https://www.npmjs.com/package/${{ env.PKG_NAME }}/v/${{ env.PKG_VERSION }}
