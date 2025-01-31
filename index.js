@@ -1,11 +1,24 @@
 const globals = require('globals');
 
+// Auto-detect plugin name, to avoid duplicate errors
+const testPlugin = (() => {
+    try {
+        require.resolve('jest');
+        return 'jest';
+    } catch {
+        return 'mocha';
+    }
+})();
+
 module.exports = {
     globals: {
         ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, 'off'])),
         ...globals.node,
-        ...globals.mocha,
     },
+    plugins: ['jest', 'mocha'],
+    extends: [
+        `plugin:${testPlugin}/recommended`,
+    ],
     rules: {
         'constructor-super': 'error',
         'for-direction': 'error',
