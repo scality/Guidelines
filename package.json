@@ -6,6 +6,7 @@
         "mdlint": "./bin/mdlint.js"
     },
     "main": "index.js",
+    "type": "module",
     "scripts": {
         "test": "yarn run --silent lint && yarn run --silent lint_md",
         "lint": "eslint -c eslint.config.cjs $(git ls-files '*.js')",
@@ -16,8 +17,8 @@
         "url": "https://github.com/scality/Guidelines"
     },
     "dependencies": {
-        "commander": "11.1.0",
-        "markdownlint": "0.31.1"
+        "commander": "13.1.0",
+        "markdownlint": "0.37.4"
     },
     "devDependencies": {
         "eslint": "^9.9.1"
