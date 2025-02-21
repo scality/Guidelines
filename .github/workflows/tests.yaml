@@ -4,20 +4,39 @@ name: tests
 on:
   push:
     branches-ignore:
-    - 'development/**'
+      - q/*/*
 
 jobs:
   test:
+    permissions:
+      packages: write
+      id-token: write
+      contents: read
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-    - name: install dependencies
-      run: yarn install --frozen-lockfile
-    - name: lint markdown
-      run: yarn lint_md
-    - name: lint javascript
-      run: yarn lint
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+          registry-url: https://npm.pkg.github.com
+      - name: install dependencies
+        run: yarn install --frozen-lockfile
+      - name: lint markdown
+        run: yarn lint_md
+      - name: lint javascript
+        run: yarn lint
+      - name: Set common env vars for npm publish
+        run: |
+          echo "SHORTSHA=$(git rev-parse --short $GITHUB_SHA)" >> $GITHUB_ENV
+          echo "PKG_VERSION=$(jq -r .version < package.json)" >> $GITHUB_ENV
+      - name: Set version for work in progress
+        run: yarn version --no-git-tag-version --new-version "0.0.0-sha.${SHORTSHA}"
+        if: github.ref_protected == false
+      - name: Set version for protected branch
+        run: yarn version --no-git-tag-version --new-version "${PKG_VERSION}-sha.${SHORTSHA}"
+        if: github.ref_protected
+      - name: Publish development version
+        run: npm publish --provenance --tag "${{ github.ref_name }}"
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}

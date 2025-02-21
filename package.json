@@ -1,23 +1,26 @@
 {
-    "name": "eslint-config-scality",
+    "name": "@scality/eslint-config",
     "version": "7.10.2",
     "description": "ESLint config for Scality's Node.js coding guidelines",
     "bin": {
-        "mdlint": "./bin/mdlint.js"
+        "mdlint": "bin/mdlint.js"
     },
     "main": "index.js",
     "scripts": {
         "test": "npm run --silent lint && npm run --silent lint_md",
-        "lint": "node_modules/.bin/eslint -c index.js $(git ls-files '*.js')",
+        "lint": "eslint -c index.js $(git ls-files '*.js')",
         "lint_md": "node bin/mdlint.js $(git ls-files '*.md')"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/scality/Guidelines"
+        "url": "git+https://github.com/scality/Guidelines.git"
     },
     "dependencies": {
         "commander": "1.3.2",
         "markdownlint": "^0.25.1"
+    },
+    "bugs": {
+        "url": "https://github.com/scality/Guidelines/issues"
     },
     "devDependencies": {
         "babel-eslint": "6.1.2",
@@ -25,19 +28,22 @@
         "eslint-config-airbnb": "6.2.0"
     },
     "keywords": [
-        "eslint",
         "eslintconfig",
-        "config",
-        "airbnb",
-        "scality",
         "javascript",
-        "markdown",
+        "scality",
         "styleguide"
     ],
-    "author": "Giorgio Regni",
+    "author": "Scality Object Squad <object-squad@scality.com>",
     "license": "Apache-2.0",
     "homepage": "https://github.com/scality/Guidelines",
     "engines": {
         "node": ">=16"
-    }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "bin",
+        "*.[c]js"
+    ]
 }
