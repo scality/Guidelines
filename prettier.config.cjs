@@ -28,6 +28,8 @@ module.exports = {
 
     // Match `quotes: [1, 'single', 'avoid-escape']`
     singleQuote: true,
+    // Match `quote-props: [2, 'consistent-as-needed']`
+    quoteProps: 'consistent-as-needed',
 
     // Match `semi: [2, 'always']`
     semi: true,
@@ -43,5 +45,22 @@ module.exports = {
 
     // Normalise line endings across platforms while avoiding noisy diffs
     endOfLine: 'lf',
-};
 
+    // Per-language tweaks to align with common Scality usage and `.editorconfig`
+    overrides: [
+        {
+            files: ['*.yml', '*.yaml', '*.json'],
+            options: {
+                tabWidth: 2,
+            },
+        },
+        {
+            files: ['*.md'],
+            options: {
+                tabWidth: 2,
+                // Avoid reflowing existing prose by default
+                proseWrap: 'preserve',
+            },
+        },
+    ],
+};

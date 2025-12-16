@@ -13,7 +13,8 @@ This project:
 
 This repository also provides a **baseline Prettier configuration** that matches
 the rules exported by `eslint-config-scality` (4-space indentation, 120-character
-line length, single quotes, semicolons, trailing commas).
+line length, single quotes, semicolons, trailing commas, `quoteProps:
+consistent-as-needed`), with small overrides for non-JavaScript files.
 
 The configuration lives in `prettier.config.cjs`.
 
@@ -48,7 +49,9 @@ To use it in a project:
 Projects are free to override options locally (for example `tabWidth` or
 `printWidth`) if they have strong legacy constraints, but this configuration
 is intended to be the **default Scality baseline** for new or reformatted
-Node.js codebases.
+Node.js codebases. YAML/JSON/Markdown files default to a 2-space indentation
+and Markdown prose is left un-reflowed by default (`proseWrap: 'preserve'`),
+to avoid noisy diffs in existing documentation.
 
 ## Editor configuration
 
