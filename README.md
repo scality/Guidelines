@@ -12,7 +12,7 @@ This project:
 ## Prettier baseline
 
 This repository also provides a **baseline Prettier configuration** that matches
-the rules exported by `eslint-config-scality` (4-space indentation, 120-character
+the rules exported by `eslint-config-scality` (2-space indentation, 160-character
 line length, single quotes, semicolons, trailing commas, `quoteProps:
 consistent-as-needed`), with small overrides for non-JavaScript files.
 
@@ -58,7 +58,7 @@ to avoid noisy diffs in existing documentation.
 For a consistent editor experience, you can copy or adapt the `.editorconfig`
 from this repository. It aligns with the ESLint and Prettier baselines:
 
-- **JS/TS**: spaces with 4-space indentation.
+- **JS/TS**: spaces with 2-space indentation.
 - **JSON/YAML/Markdown**: spaces with 2-space indentation.
 - `end_of_line = lf`, `insert_final_newline = true`,
   `trim_trailing_whitespace = true`.
