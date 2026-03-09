@@ -11,10 +11,10 @@ This project:
 
 ## Prettier baseline
 
-This repository also provides a **baseline Prettier configuration** that matches
-the rules exported by `eslint-config-scality` (2-space indentation, 160-character
-line length, single quotes, semicolons, trailing commas, `quoteProps:
-consistent-as-needed`), with small overrides for non-JavaScript files.
+This repository also provides a **baseline Prettier configuration** for Scality
+object repositories: 4-space JavaScript/TypeScript indentation, 120-character
+line length, single quotes, semicolons, trailing commas, and
+`quoteProps: 'as-needed'`.
 
 The configuration lives in `prettier.config.cjs`.
 
@@ -49,17 +49,18 @@ To use it in a project:
 Projects are free to override options locally (for example `tabWidth` or
 `printWidth`) if they have strong legacy constraints, but this configuration
 is intended to be the **default Scality baseline** for new or reformatted
-Node.js codebases. YAML/JSON/Markdown files default to a 2-space indentation
-and Markdown prose is left un-reflowed by default (`proseWrap: 'preserve'`),
-to avoid noisy diffs in existing documentation.
+Node.js codebases. YAML defaults to 2-space indentation, JSON and Markdown to
+4-space indentation, and Markdown prose is left un-reflowed by default
+(`proseWrap: 'preserve'`) to avoid noisy diffs in existing documentation.
 
 ## Editor configuration
 
 For a consistent editor experience, you can copy or adapt the `.editorconfig`
 from this repository. It aligns with the ESLint and Prettier baselines:
 
-- **JS/TS**: spaces with 2-space indentation.
-- **JSON/YAML/Markdown**: spaces with 2-space indentation.
+- **JS/TS**: spaces with 4-space indentation.
+- **JSON/Markdown**: spaces with 4-space indentation.
+- **YAML**: spaces with 2-space indentation.
 - `end_of_line = lf`, `insert_final_newline = true`,
   `trim_trailing_whitespace = true`.
 
