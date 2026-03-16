@@ -1,6 +1,6 @@
 {
     "name": "eslint-config-scality",
-    "version": "8.3.0",
+    "version": "8.3.1",
     "description": "ESLint config for Scality's Node.js coding guidelines",
     "bin": {
         "mdlint": "./bin/mdlint.js"
