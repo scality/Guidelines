@@ -3,13 +3,16 @@
     "version": "8.3.1",
     "description": "ESLint config for Scality's Node.js coding guidelines",
     "bin": {
-        "mdlint": "./bin/mdlint.js"
+        "mdlint": "./bin/mdlint.js",
+        "scality-prettier-diff": "./bin/prettier-diff.js"
     },
     "main": "index.js",
     "scripts": {
-        "test": "yarn run --silent lint && yarn run --silent lint_md",
+        "test": "yarn run --silent lint && yarn run --silent lint_md && yarn run --silent prettier:diff",
         "lint": "eslint -c eslint.config.cjs $(git ls-files '*.js')",
-        "lint_md": "node bin/mdlint.js $(git ls-files '*.md')"
+        "lint_md": "node bin/mdlint.js $(git ls-files '*.md')",
+        "prettier": "prettier",
+        "prettier:diff": "node tests/prettier-diff.js"
     },
     "repository": {
         "type": "git",
@@ -20,7 +23,8 @@
         "markdownlint": "0.31.1"
     },
     "devDependencies": {
-        "eslint": "^9.9.1"
+        "eslint": "^9.9.1",
+        "prettier": "^3.4.2"
     },
     "keywords": [
         "eslint",
