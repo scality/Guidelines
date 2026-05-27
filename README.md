@@ -14,7 +14,7 @@ This project:
 This repository also provides a **baseline Prettier configuration** for Scality
 object repositories: 4-space JavaScript/TypeScript indentation, 120-character
 line length, single quotes, semicolons, trailing commas, and
-`quoteProps: 'as-needed'`.
+`quoteProps: 'consistent'`.
 
 The configuration lives in `prettier.config.cjs`.
 
