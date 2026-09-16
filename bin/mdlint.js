@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 const commander = require('commander');
-const markdownlint = require('markdownlint');
+const { lint } = require('markdownlint/sync');
 
 const files = commander.parse(process.argv).args;
 
-// See rules at https://github.com/mivok/markdownlint/blob/master/docs/RULES.md
+// See rules at https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
 const config = {
     MD004: false, // Unordered list style
     MD007: false, // Unordered list indentation
@@ -13,9 +13,10 @@ const config = {
     MD029: { style: 'ordered' }, // Ordered list item prefix
     MD034: false, // Bare URL used
     MD040: false, // Fenced code blocks should have a language specified
+    MD059: false, // Link text should be descriptive
 };
 
-const result = markdownlint.sync({ files, config });
+const result = lint({ files, config });
 const errors = result.toString();
 if (errors) {
     process.stderr.write(`${errors}\n`);

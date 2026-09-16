@@ -20,11 +20,11 @@
     },
     "dependencies": {
         "commander": "11.1.0",
-        "markdownlint": "0.31.1"
+        "markdownlint": "0.38.0"
     },
     "devDependencies": {
-        "eslint": "^9.9.1",
-        "prettier": "^3.4.2"
+        "eslint": "^9.39.5",
+        "prettier": "^3.9.6"
     },
     "keywords": [
         "eslint",
