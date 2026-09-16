@@ -20,7 +20,17 @@
     },
     "dependencies": {
         "commander": "11.1.0",
+        "globals": "^14.0.0",
         "markdownlint": "0.38.0"
+    },
+    "peerDependencies": {
+        "eslint": "^9",
+        "prettier": "^3"
+    },
+    "peerDependenciesMeta": {
+        "prettier": {
+            "optional": true
+        }
     },
     "devDependencies": {
         "eslint": "^9.39.5",
