@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const commander = require('commander');
-const { lint } = require('markdownlint/sync');
 
 const files = commander.parse(process.argv).args;
 
@@ -16,9 +15,13 @@ const config = {
     MD059: false, // Link text should be descriptive
 };
 
-const result = lint({ files, config });
-const errors = result.toString();
-if (errors) {
-    process.stderr.write(`${errors}\n`);
-    process.exit(1);
-}
+// markdownlint is ESM-only: importing it dynamically keeps this script
+// CommonJS and runs on Node versions without require(esm).
+(async () => {
+    const { lint } = await import('markdownlint/sync');
+    const errors = lint({ files, config }).toString();
+    if (errors) {
+        process.stderr.write(`${errors}\n`);
+        process.exit(1);
+    }
+})();
