@@ -19,7 +19,6 @@
         "url": "https://github.com/scality/Guidelines"
     },
     "dependencies": {
-        "commander": "11.1.0",
         "globals": "^14.0.0",
         "markdownlint": "0.38.0"
     },

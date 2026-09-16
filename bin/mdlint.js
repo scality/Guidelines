@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-const commander = require('commander');
-
-const files = commander.parse(process.argv).args;
+const files = process.argv.slice(2);
 
 // See rules at https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
 const config = {
