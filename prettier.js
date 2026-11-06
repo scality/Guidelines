@@ -12,6 +12,8 @@ module.exports = [
             'quotes': rules.quotes,
             'no-unexpected-multiline': rules['no-unexpected-multiline'],
             'max-len': rules['max-len'],
+            'no-useless-concat': 2,
+            'no-multi-str': 2,
         },
     },
 ];
