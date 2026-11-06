@@ -14,11 +14,10 @@
         "./package.json": "./package.json"
     },
     "scripts": {
-        "test": "yarn run --silent lint && yarn run --silent lint_md && yarn run --silent prettier:diff",
+        "test": "yarn run --silent lint && yarn run --silent lint_md && node --test 'tests/*.js'",
         "lint": "eslint -c eslint.config.cjs $(git ls-files '*.js')",
         "lint_md": "node bin/mdlint.js $(git ls-files '*.md')",
-        "prettier": "prettier",
-        "prettier:diff": "node tests/prettier-diff.js"
+        "prettier": "prettier"
     },
     "repository": {
         "type": "git",
