@@ -9,7 +9,7 @@
     "main": "index.js",
     "scripts": {
         "test": "yarn run --silent lint && yarn run --silent lint_md && yarn run --silent prettier:diff",
-        "lint": "eslint -c eslint.config.cjs $(git ls-files '*.js')",
+        "lint": "eslint -c base.js $(git ls-files '*.js')",
         "lint_md": "node bin/mdlint.js $(git ls-files '*.md')",
         "prettier": "prettier",
         "prettier:diff": "node tests/prettier-diff.js"
