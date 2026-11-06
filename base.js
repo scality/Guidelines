@@ -1,6 +1,6 @@
 const globals = require('globals');
 
-module.exports = {
+const base = {
     languageOptions: {
         globals: {
             ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, 'off'])),
@@ -188,3 +188,5 @@ module.exports = {
         'no-underscore-dangle': 0,
     },
 };
+
+module.exports = [base];
