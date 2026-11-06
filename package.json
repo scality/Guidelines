@@ -10,6 +10,7 @@
     "exports": {
         ".": "./index.js",
         "./base": "./base.js",
+        "./prettier": "./prettier.js",
         "./prettier.config.cjs": "./prettier.config.cjs",
         "./package.json": "./package.json"
     },
@@ -24,6 +25,7 @@
         "url": "https://github.com/scality/Guidelines"
     },
     "dependencies": {
+        "eslint-config-prettier": "^10.1.8",
         "globals": "^14.0.0",
         "markdownlint": "0.38.0"
     },
