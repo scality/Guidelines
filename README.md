@@ -7,7 +7,8 @@ This project:
 
 - Provides an `eslint-config-scality` package that can be added as a dependency
   in other projects. That way, coding style can automatically be checked using
-  eslint.
+  eslint. Flat configs can spread `eslint-config-scality/base`; the package
+  root still exports the legacy config for `FlatCompat`.
 
 ## Prettier baseline
 
