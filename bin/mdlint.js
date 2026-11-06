@@ -5,6 +5,8 @@ const files = process.argv.slice(2);
 const config = {
     MD004: false, // Unordered list style
     MD007: false, // Unordered list indentation
+    // eslint-disable-next-line camelcase
+    MD013: { tables: false, code_block_line_length: 120 }, // Prettier pads tables, wraps code at 120
     MD024: false, // Multiple headers with the same content
     MD027: false, // Multiple spaces after blockquote symbol
     MD029: { style: 'ordered' }, // Ordered list item prefix
