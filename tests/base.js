@@ -16,6 +16,7 @@ const root = path.join(__dirname, '..');
 for (const [specifier, file] of [
     ['eslint-config-scality', 'index.js'],
     ['eslint-config-scality/base', 'base.js'],
+    ['eslint-config-scality/prettier', 'prettier.js'],
     ['eslint-config-scality/prettier.config.cjs', 'prettier.config.cjs'],
     ['eslint-config-scality/package.json', 'package.json'],
 ]) {

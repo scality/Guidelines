@@ -48,6 +48,16 @@ To use it in a project:
     }
     ```
 
+4. Extend the ESLint config made for Prettier instead of the base one, before
+   the project's own rules:
+
+    ```js
+    // eslint.config.mjs
+    import scality from 'eslint-config-scality/prettier';
+
+    export default [...scality /* , project rules */];
+    ```
+
 Projects may override options locally (for example `tabWidth` or
 `printWidth`) if they have strong legacy constraints, but this configuration
 is intended to be the **default Scality baseline** for new or reformatted
