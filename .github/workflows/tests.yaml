@@ -28,3 +28,5 @@ jobs:
       run: yarn lint
     - name: test
       run: yarn test
+    - name: check formatting
+      run: yarn prettier:check

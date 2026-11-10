@@ -16,7 +16,8 @@
         "test": "node --test 'tests/*.js'",
         "lint": "eslint -c eslint.config.cjs $(git ls-files '*.js' ':!tests/fixtures')",
         "lint_md": "node bin/mdlint.js $(git ls-files '*.md')",
-        "prettier": "prettier"
+        "prettier": "prettier",
+        "prettier:check": "prettier --check ."
     },
     "repository": {
         "type": "git",
