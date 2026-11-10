@@ -23,17 +23,13 @@
         "url": "https://github.com/scality/Guidelines"
     },
     "dependencies": {
+        "eslint-config-prettier": "^10.1.8",
         "globals": "^14.0.0",
         "markdownlint": "0.38.0"
     },
     "peerDependencies": {
         "eslint": "^9 || ^10",
         "prettier": "^3"
-    },
-    "peerDependenciesMeta": {
-        "prettier": {
-            "optional": true
-        }
     },
     "devDependencies": {
         "eslint": "^10.14.0",

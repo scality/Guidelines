@@ -1,3 +1,4 @@
+const eslintConfigPrettier = require('eslint-config-prettier/flat');
 const globals = require('globals');
 
 const config = {
@@ -189,4 +190,25 @@ const config = {
     },
 };
 
-module.exports = [config];
+const [maxLenSeverity, code, tabWidth] = config.rules['max-len'];
+
+module.exports = [
+    config,
+    eslintConfigPrettier,
+    {
+        rules: {
+            'curly': config.rules.curly,
+            'quotes': config.rules.quotes,
+            'no-unexpected-multiline': config.rules['no-unexpected-multiline'],
+            'max-len': [
+                maxLenSeverity,
+                {
+                    code,
+                    tabWidth,
+                    // Prettier keeps a require of a single module on one line, and its path cannot be split
+                    ignorePattern: '^\\s*(?:const|let|var)\\s.+=\\s*require\\s*\\(',
+                },
+            ],
+        },
+    },
+];
