@@ -11,8 +11,9 @@ This project:
 
 ## ESLint configuration
 
-The package exports a flat ESLint configuration. Spread it in the project's
-`eslint.config.mjs`, before the project's own rules:
+The package exports a flat ESLint configuration. It leaves formatting to
+Prettier, so use it together with the Prettier baseline below. Spread it in the
+project's `eslint.config.mjs`, before the project's own rules:
 
 ```js
 import scality from 'eslint-config-scality';
