@@ -70,7 +70,7 @@ is incremented when backward-compatible features are added, and major is
 incremented with major backward incompatible changes.
 
 In GWF, every living minor version has a corresponding development/major.minor
-branch, each of which must  be included in newer ones. In fig. 1  a
+branch, each of which must be included in newer ones. In fig. 1 a
 development/1.0 is included into development/1.1, which in turn is included in
 development 2.0. Consequently, a GWF-compliant repository has a waterfall-like
 representation, hence the name “GitWaterFlow”.
@@ -148,12 +148,12 @@ type of task the branch is associated with, then followed by Jira ticket
 number and self-explanatory `name` for the branch. The following Tags are
 currently allowed:
 
-* feature: Feature branch
-* bugfix: Bugfix branch
-* hotfix: Hotfix branch (fundamentaly an emergency Bugfix branch)
-* documentation: Documentation branch
-* improvement: Code Cleanup/Refactoring branch
-* ...
+- feature: Feature branch
+- bugfix: Bugfix branch
+- hotfix: Hotfix branch (fundamentaly an emergency Bugfix branch)
+- documentation: Documentation branch
+- improvement: Code Cleanup/Refactoring branch
+- ...
 
 For instance, if contributor A was going to work on the feature adding
 squeaking sounds to his favourite VCS, he could name his branch:
@@ -176,8 +176,8 @@ With his own branch, contributor A can now manage the branch's code as
 he wishes, as the branch is his own responsibility, within the constraints of
 the project. These constraints include:
 
-* Complying to the [Coding Style Guidelines](#coding-style-guidelines)
-* Providing the proper tests to validate the proposed code
+- Complying to the [Coding Style Guidelines](#coding-style-guidelines)
+- Providing the proper tests to validate the proposed code
 
 In order for the project to be as stable as possible, every piece of code must
 be tested. This means that any code submission must be associated with related
@@ -196,7 +196,7 @@ document must describe and explain properly the following elements for each
 scenario:
 
 - The architecture of the software components taking part in the test (where
-  do the components run, in the same host?  different hosts?  other?)
+  do the components run, in the same host? different hosts? other?)
 - What feature is being tested?
 - If relevant, what aspect/mechanism of the feature is being tested/proved?
 - How is the feature tested? With what behavior?
@@ -259,16 +259,16 @@ With his own branch, contributor A can commit and manage the branch's
 history as he wishes, as the branch is his own responsibility, within the
 constraints of the project. These constraints for the commits include:
 
-* Commit Message Formatting Policy
-* Peer validation of the commit's atomicity and meaningfulness
-* Squashing all commits into one messege before doing pull request
+- Commit Message Formatting Policy
+- Peer validation of the commit's atomicity and meaningfulness
+- Squashing all commits into one messege before doing pull request
 
 It is asked of every contributor to provide commit messages as clear as
 possible, while attempting to make one commit comply to the following
 conditions:
 
-* Provide one and only one feature/bugfix/meaningful change
-* Provide working unit and functional tests associated to the change.
+- Provide one and only one feature/bugfix/meaningful change
+- Provide working unit and functional tests associated to the change.
 
 The commit message shall follow a **standardized formatting,
 that will be checked automatically by a VCS hook on the commit**.
@@ -370,11 +370,11 @@ the `master` branch.
 
 The code reviews must include the following checks:
 
-* Ensuring the compliance to the coding style guidelines
-* Ensuring the presence and coverage of tests (unit, functional and
-                                               performance)
-* Ensuring the code is functional and working, through the tests
-* Ensuring the commit messages were properly formatted and as atomic as
+- Ensuring the compliance to the coding style guidelines
+- Ensuring the presence and coverage of tests (unit, functional and
+  performance)
+- Ensuring the code is functional and working, through the tests
+- Ensuring the commit messages were properly formatted and as atomic as
   possible
 
 ## Managing and Maintaining Releases
@@ -465,160 +465,161 @@ web browsers. They shall be ignored.
 
 ### [Whitespace](http://github.com/airbnb/javascript/blob/master/README.md#whitespace)
 
-* [18.1](http://github.com/airbnb/javascript/blob/master/README.md#18.1)
+- [18.1](http://github.com/airbnb/javascript/blob/master/README.md#18.1)
   Use soft tabs set to 4 spaces for the indentation of the code. Although this
   will reduce the efficient line length, this rule will result in easier
   readability.
 
-  ```js
-  // bad
-  function() {
-  ∙∙const name;
-  }
+    ```js
+    // bad
+    function() {
+    ∙∙const name;
+    }
 
-  // bad
-  function() {
-  ∙const name;
-  }
+    // bad
+    function() {
+    ∙const name;
+    }
 
-  // good
-  function() {
-  ∙∙∙∙const name;
-  }
-  ```
+    // good
+    function() {
+    ∙∙∙∙const name;
+    }
+    ```
 
 ## Additional Rules
 
 ### Blocks
 
-* **16.3** Do not use one-line blocks for conditions. This reduces
+- **16.3** Do not use one-line blocks for conditions. This reduces
   readability by deviating from the usual way people read code, interfering with
   both their habits and their reading flow.
 
-  ```js
-  // bad
-  if (test)
-     return false
+    ```js
+    // bad
+    if (test) return false;
 
-  // bad
-  if (test) return false;
+    // bad
+    if (test) return false;
 
-  // bad
-  if (test) { return false; }
+    // bad
+    if (test) {
+        return false;
+    }
 
-  // good
-  if (test) {
-      return false;
-  }
-  ```
+    // good
+    if (test) {
+        return false;
+    }
+    ```
 
 ### Comments
 
-* **17.6** Even though single line comments are accepted, try to minimize
+- **17.6** Even though single line comments are accepted, try to minimize
   them, as they are often forgotten when updating the code, and can thus easily
   get out of sync with the code itself.
 
-* **17.7** No commented code shall find its way to the codebase, as it is
+- **17.7** No commented code shall find its way to the codebase, as it is
   useless visual clutter with limited meaning most of the time, and is
   often outdated when it has a meaning. Prefer using `TODO` markers within
   comments to explain something instead.
 
-* **17.8** API functions must be preceded by a small
+- **17.8** API functions must be preceded by a small
   doxygen/jsdoc-formatted explanatory comment: What is the role of the function,
   what are the parameters, what are the possible return values, and whether it
   can throw exceptions:
 
-  ```js
-  // bad
-  /*
-   * The blipMyFunc function takes one function in parameter and returns
-   * true only when the given function fits a random criteria using the
-   * parameter string.
-   */
-  function blipMyFunc(func, str) {
-      ...
-  }
+    ```js
+    // bad
+    /*
+     * The blipMyFunc function takes one function in parameter and returns
+     * true only when the given function fits a random criteria using the
+     * parameter string.
+     */
+    function blipMyFunc(func, str) {
+        ...
+    }
 
-  // good
-  /*
-   * This function blips a function using the parameter string str.
-   * @function
-   * @param {function} func  the function to blip
-   * @param {String} str     the string to blip the function with
-   * @return {boolean} true if func fits a random criteria using str
-   * @return {boolean} false if func does not fit a random criteria using str
-   * @throws {Error} Invalid Parameters
-   */
-  function blipMyFunc(func) {
-     ...
-  }
-  ```
+    // good
+    /*
+     * This function blips a function using the parameter string str.
+     * @function
+     * @param {function} func  the function to blip
+     * @param {String} str     the string to blip the function with
+     * @return {boolean} true if func fits a random criteria using str
+     * @return {boolean} false if func does not fit a random criteria using str
+     * @throws {Error} Invalid Parameters
+     */
+    function blipMyFunc(func) {
+       ...
+    }
+    ```
 
-  Complex internal functions shall also be described through such a comment.
+    Complex internal functions shall also be described through such a comment.
 
-* **17.9** Complex parts of the code shall be preceded by a comment block
+- **17.9** Complex parts of the code shall be preceded by a comment block
   explaining the WHY, the HOW, and the WHAT FOR. This also includes explaining
   the choice of the method or tool in a similar manner.
 
-* **17.10** Avoid paraphrasing the code through the comments, as it is
+- **17.10** Avoid paraphrasing the code through the comments, as it is
   not useful and generates noise for code reading (reviews included)
 
 ### ECMAScript 6 Styles
 
-* **27.2** In order to use the full power of ES6 with nodeJS v4, the use
+- **27.2** In order to use the full power of ES6 with nodeJS v4, the use
   of the npm module [Babel](http://babeljs.io/) is required. It provides a
   seamless way to translate code written in ES6 to ES5 without the intervention
   of the developer. It will provide all the missing ES6 features to nodeJS which
   ES6 support is currently incomplete. Using Babel within your NodeJS code:
 
-  ```js
-  'use strict';
-  require('babel/register');
+    ```js
+    'use strict';
+    require('babel/register');
 
-  var MainClass = require('../mainClass.js');
-  var prog = MainClass();
-  prog.start();
-  ```
+    var MainClass = require('../mainClass.js');
+    var prog = MainClass();
+    prog.start();
+    ```
 
-  Using Babel for mocha tests:
+    Using Babel for mocha tests:
 
-  ```shell
-  Prompt> mocha test.js --compiler js:babel/register
-  ```
+    ```shell
+    Prompt> mocha test.js --compiler js:babel/register
+    ```
 
-  Only the entry points of the programs are exempted from being written in ES6,
-  due to the way Babel is used.
+    Only the entry points of the programs are exempted from being written in ES6,
+    due to the way Babel is used.
 
 ### Coding Style General Rules
 
-* **29.1** The usage of the use strict directive is required at the start
+- **29.1** The usage of the use strict directive is required at the start
   of each file of code:
 
-  ```
-  'use strict';
-  ```
+    ```
+    'use strict';
+    ```
 
-* **29.2** No line shall be longer than 80 characters, as such a length
+- **29.2** No line shall be longer than 80 characters, as such a length
   can provide, within modern working setups, the possibility to work on
   multiple files at the same time on one screen.
 
-* **29.3** When naming Types, functions and variables, use semantically
+- **29.3** When naming Types, functions and variables, use semantically
   correct names that describe their use and objective.
 
-  ```
-  // bad
-  let test = true;
+    ```
+    // bad
+    let test = true;
 
-  // bad
-  let human = true;
+    // bad
+    let human = true;
 
-  // good
-  let userIsHuman = true;
-  ```
+    // good
+    let userIsHuman = true;
+    ```
 
 ### Avoiding the Callback Hell
 
-* **30.1** No nested callback shall be longer than 5 lines. Any nested
+- **30.1** No nested callback shall be longer than 5 lines. Any nested
   callback longer than this deserves its own proper function. Any such function
   that requires the binding of arguments from the parent function, should use
   [Currying](https://en.wikipedia.org/wiki/Currying). This is a functionnal
@@ -627,104 +628,104 @@ web browsers. They shall be ignored.
   telling the developer that they are generating functions, otherwise it might
   become easily confusing for the reader of the code.
 
-  ```js
-  // Bad (too many lines/nestings for a nested function definition)
-  function do_step1(err, value) {
-      var name = 'step 1';
-      do_async_call(data, function do_step2(status, data) {
-                       console.log(`${name} : ${status} -> ${data}`);
-                       if (data) {
-                         writeFile(data, function writeDone(err) {
-                             if (err) {
-                                 throw new Error(`Could not write data to file: ${err.message}`);
-                             }
-                             console.log("Wrote file successfully");
-                         });
-                       }
-                    });
-  }
+    ```js
+    // Bad (too many lines/nestings for a nested function definition)
+    function do_step1(err, value) {
+        var name = 'step 1';
+        do_async_call(data, function do_step2(status, data) {
+                         console.log(`${name} : ${status} -> ${data}`);
+                         if (data) {
+                           writeFile(data, function writeDone(err) {
+                               if (err) {
+                                   throw new Error(`Could not write data to file: ${err.message}`);
+                               }
+                               console.log("Wrote file successfully");
+                           });
+                         }
+                      });
+    }
 
-  // Good (Arrow syntax is not prefered, but it's okay)
-  function do_step2(name, status, data) {
-      console.log(`${name} : ${status} -> ${data}`);
-      ... // A number of operations here, making the function too long to fit.
-  }
+    // Good (Arrow syntax is not prefered, but it's okay)
+    function do_step2(name, status, data) {
+        console.log(`${name} : ${status} -> ${data}`);
+        ... // A number of operations here, making the function too long to fit.
+    }
 
-  function do_step1(err, value) {
-      var name = 'step 1';
-      do_async_call(data, (status, data) => { do_step2(name, status, data); });
-  }
+    function do_step1(err, value) {
+        var name = 'step 1';
+        do_async_call(data, (status, data) => { do_step2(name, status, data); });
+    }
 
-  // Good (Less than 5 lines, so it's ok)
-  function do_step1(err, status, data) {
-      var name = 'step 1';
-      do_async_call(data, function do_step2(status, data) {
-                       console.log(`${name} : ${status} -> ${data}`);
-                    });
-  }
+    // Good (Less than 5 lines, so it's ok)
+    function do_step1(err, status, data) {
+        var name = 'step 1';
+        do_async_call(data, function do_step2(status, data) {
+                         console.log(`${name} : ${status} -> ${data}`);
+                      });
+    }
 
-  // Best (Fully using Currying, the async call is easy to read)
-  // Also, the name is explicit in the way it says it generates something)
-  function generateStep2(name) {
-      let step2 = function do_step2(status, data) {
-          console.log(`${name} : ${status} -> ${data}`);
-          ... // A number of operations here, making the function too long to fit.
-      };
-      return step2;
-  }
+    // Best (Fully using Currying, the async call is easy to read)
+    // Also, the name is explicit in the way it says it generates something)
+    function generateStep2(name) {
+        let step2 = function do_step2(status, data) {
+            console.log(`${name} : ${status} -> ${data}`);
+            ... // A number of operations here, making the function too long to fit.
+        };
+        return step2;
+    }
 
-  function do_step1(err, value) {
-      var name = 'step 1';
-      do_async_call(data, generateStep2(name));
-  }
-  ```
+    function do_step1(err, value) {
+        var name = 'step 1';
+        do_async_call(data, generateStep2(name));
+    }
+    ```
 
 ### Strict equality
 
-* **31.1** In the same manner `===` should be used instead of `==`,
+- **31.1** In the same manner `===` should be used instead of `==`,
   defaulting missing variables should not be done using `||` unless there is a
   specific and good reason.
 
-  Example:
+    Example:
 
-  ```js
-  // bad
-  function f(arg, optionalArg, opts = {}) {
-      const message = optionalArg || 'not set';  // what if arg === ''?
-      const rate = opts.rate || 0.1;             // what if arg === 0.0?
-  }
+    ```js
+    // bad
+    function f(arg, optionalArg, opts = {}) {
+        const message = optionalArg || 'not set';  // what if arg === ''?
+        const rate = opts.rate || 0.1;             // what if arg === 0.0?
+    }
 
-  // bad
-  const useUnicode = ENV['USE_UTF8'] || true;    // what if arg === false?
+    // bad
+    const useUnicode = ENV['USE_UTF8'] || true;    // what if arg === false?
 
-  // good
-  function f(arg, optionalArg = 'not set', opts = {}) {
-      const rate = opts.rate !== undefined ? opts.rate : 0.1;
-  }
+    // good
+    function f(arg, optionalArg = 'not set', opts = {}) {
+        const rate = opts.rate !== undefined ? opts.rate : 0.1;
+    }
 
-  // good, with some input checking
-  function f(opts = {}) {
-      if (opts.msg !== undefined)
-          assert(typeof opts.msg === 'string', 'opts.msg must be a string');
+    // good, with some input checking
+    function f(opts = {}) {
+        if (opts.msg !== undefined)
+            assert(typeof opts.msg === 'string', 'opts.msg must be a string');
 
-      const message = opts.msg !== undefined ? opts.msg : 'not set';
-  }
+        const message = opts.msg !== undefined ? opts.msg : 'not set';
+    }
 
-  // good
-  const useUnicode = ENV['USE_UTF8'] !== undefined : ENV['USE_UTF8'] || true;
-  ```
+    // good
+    const useUnicode = ENV['USE_UTF8'] !== undefined : ENV['USE_UTF8'] || true;
+    ```
 
-  Why? Because `||` does not check for strict equality. So if an user passes `0`,
-  `false`, `null`, `''`, etc. as an argument, it will be defaulted while it
-  shouldn't be. Try this in a node prompt:
+    Why? Because `||` does not check for strict equality. So if an user passes `0`,
+    `false`, `null`, `''`, etc. as an argument, it will be defaulted while it
+    shouldn't be. Try this in a node prompt:
 
-  ```js
-  > 43 || 'DEFAULT'     // 43
-  > 0 || 'DEFAULT'      // 'DEFAULT'
-  > false || 'DEFAULT'  // 'DEFAULT'
-  > null || 'DEFAULT'   // 'DEFAULT'
-  > '' || 'DEFAULT'     // 'DEFAULT'
-  ```
+    ```js
+    > 43 || 'DEFAULT'     // 43
+    > 0 || 'DEFAULT'      // 'DEFAULT'
+    > false || 'DEFAULT'  // 'DEFAULT'
+    > null || 'DEFAULT'   // 'DEFAULT'
+    > '' || 'DEFAULT'     // 'DEFAULT'
+    ```
 
 ### Logging
 
@@ -799,8 +800,7 @@ log.debug('computing request signature', { accessKeyId, date, algorithm });
 // bad
 log.info(`host ${server} is down!`);
 // good
-log.error('bucket metadata update failed',
-          { bucketName, server, error: errorObject });
+log.error('bucket metadata update failed', { bucketName, server, error: errorObject });
 ```
 
 #### Fields
@@ -809,31 +809,31 @@ Fields added as context to log messages should use consistent names across the
 product to ease searching, matching and building health dashboards. Here is a
 non-exhaustive list of field names to use:
 
-* Generic
-  * `bucketName`
-  * `objectKey`
-  * `partId`
-  * `accessKeyId`
-  * `attemptsLeft`
-  * `totalAttempts` (for the number of times we tried something before deciding
-    to fail)
-  * `duration` (in microsecs)
-  * `date`
-  * `endpoint` (can be any service endpoint formatted as `address:port` for
-    remote service such as `bucketd`, `vaultd`, `repd`, etc)
-  * `method` (method being called in an API)
-  * `error` (as an `arsenal.errors.ArsenalError` object)
-* S3 specific
-  * `clientIP`
-  * `namespace`
-  * `sproxydObjectKey`
-* Metadata specific
-  * `raftSession`
-* Vault specific
-  * `algorithm`
-  * `entityType`
-  * `entityContent`
-  * `authenticationDetails`
-  * `stringToSign`
+- Generic
+    - `bucketName`
+    - `objectKey`
+    - `partId`
+    - `accessKeyId`
+    - `attemptsLeft`
+    - `totalAttempts` (for the number of times we tried something before deciding
+      to fail)
+    - `duration` (in microsecs)
+    - `date`
+    - `endpoint` (can be any service endpoint formatted as `address:port` for
+      remote service such as `bucketd`, `vaultd`, `repd`, etc)
+    - `method` (method being called in an API)
+    - `error` (as an `arsenal.errors.ArsenalError` object)
+- S3 specific
+    - `clientIP`
+    - `namespace`
+    - `sproxydObjectKey`
+- Metadata specific
+    - `raftSession`
+- Vault specific
+    - `algorithm`
+    - `entityType`
+    - `entityContent`
+    - `authenticationDetails`
+    - `stringToSign`
 
 This list will grow as logging context needs are explored.

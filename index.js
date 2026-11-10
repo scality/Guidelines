@@ -76,35 +76,21 @@ const config = {
         'camelcase': [
             2,
             {
-                properties: 'always'
-            }
+                properties: 'always',
+            },
         ],
-        'indent': [
-            2,
-            4
-        ],
-        'quotes': [
-            1,
-            'single',
-            'avoid-escape'
-        ],
-        'semi': [
-            2,
-            'always'
-        ],
+        'indent': [2, 4],
+        'quotes': [1, 'single', 'avoid-escape'],
+        'semi': [2, 'always'],
         'curly': 1,
         'no-mixed-spaces-and-tabs': 2,
-        'max-len': [
-            2,
-            120,
-            4
-        ],
+        'max-len': [2, 120, 4],
         'space-before-function-paren': [
             2,
             {
                 anonymous: 'always',
-                named: 'never'
-            }
+                named: 'never',
+            },
         ],
         'id-length': 0,
         'no-shadow': 0,
@@ -113,20 +99,14 @@ const config = {
             2,
             {
                 max: 2,
-                maxEOF: 1
-            }
+                maxEOF: 1,
+            },
         ],
         'no-console': 2,
         'object-shorthand': 2,
-        'quote-props': [
-            2,
-            'consistent-as-needed'
-        ],
+        'quote-props': [2, 'consistent-as-needed'],
         'prefer-template': 2,
-        'array-bracket-spacing': [
-            1,
-            'never'
-        ],
+        'array-bracket-spacing': [1, 'never'],
         'keyword-spacing': [
             1,
             {
@@ -134,58 +114,43 @@ const config = {
                 after: true,
                 overrides: {
                     return: {
-                        after: true
+                        after: true,
                     },
                     throw: {
-                        after: true
+                        after: true,
                     },
                     case: {
-                        after: true
-                    }
-                }
-            }
+                        after: true,
+                    },
+                },
+            },
         ],
-        'linebreak-style': [
-            1,
-            'unix'
-        ],
+        'linebreak-style': [1, 'unix'],
         'new-cap': [
             1,
             {
-                newIsCap: true
-            }
+                newIsCap: true,
+            },
         ],
-        'space-in-parens': [
-            1,
-            'never'
-        ],
+        'space-in-parens': [1, 'never'],
         'consistent-return': 1,
         'prefer-arrow-callback': 1,
         'no-param-reassign': [
             1,
             {
-                props: true
-            }
+                props: true,
+            },
         ],
-        'arrow-body-style': [
-            1,
-            'as-needed'
-        ],
+        'arrow-body-style': [1, 'as-needed'],
         'prefer-rest-params': 1,
         'no-unneeded-ternary': [
             1,
             {
-                defaultAssignment: false
-            }
+                defaultAssignment: false,
+            },
         ],
-        'arrow-parens': [
-            1,
-            'as-needed'
-        ],
-        'no-return-assign': [
-            1,
-            'always'
-        ],
+        'arrow-parens': [1, 'as-needed'],
+        'no-return-assign': [1, 'always'],
         'prefer-const': 1,
         'array-callback-return': 1,
         'no-underscore-dangle': 0,

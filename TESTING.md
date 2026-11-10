@@ -5,7 +5,7 @@ Guidelines surrounding our testing setup
 ## Types of tests
 
 During the growth of our project, we identified four different kind of testing.
-These vary in size, but they can be separated in two categories: *small tests*
+These vary in size, but they can be separated in two categories: _small tests_
 and **big tests**.
 
 ### Small tests
