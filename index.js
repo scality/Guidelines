@@ -1,10 +1,12 @@
 const globals = require('globals');
 
-module.exports = {
-    globals: {
-        ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, 'off'])),
-        ...globals.node,
-        ...globals.mocha,
+const config = {
+    languageOptions: {
+        globals: {
+            ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, 'off'])),
+            ...globals.node,
+            ...globals.mocha,
+        },
     },
     rules: {
         'constructor-super': 'error',
@@ -186,3 +188,5 @@ module.exports = {
         'no-underscore-dangle': 0,
     },
 };
+
+module.exports = [config];
