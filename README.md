@@ -9,6 +9,17 @@ This project:
   in other projects. That way, coding style can automatically be checked using
   eslint.
 
+## ESLint configuration
+
+The package exports a flat ESLint configuration. Spread it in the project's
+`eslint.config.mjs`, before the project's own rules:
+
+```js
+import scality from 'eslint-config-scality';
+
+export default [...scality /* , project rules */];
+```
+
 ## Prettier baseline
 
 This repository also provides a **baseline Prettier configuration** for Scality
