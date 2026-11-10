@@ -209,6 +209,8 @@ module.exports = [
                     ignorePattern: '^\\s*(?:const|let|var)\\s.+=\\s*require\\s*\\(',
                 },
             ],
+            'no-useless-concat': 2,
+            'no-multi-str': 2,
         },
     },
 ];
