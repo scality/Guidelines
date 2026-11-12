@@ -72,8 +72,7 @@ To use it in a project:
     {
         "scripts": {
             "format": "prettier --write .",
-            "format:check": "prettier --check .",
-            "prettier:diff": "scality-prettier-diff"
+            "format:check": "prettier --check ."
         }
     }
     ```
@@ -84,19 +83,6 @@ is intended to be the **default Scality baseline** for new or reformatted
 Node.js codebases. YAML/JSON/Markdown files default to a 2-space indentation
 and Markdown prose is left un-reflowed by default (`proseWrap: 'preserve'`),
 to avoid noisy diffs in existing documentation.
-
-For pull request checks or local review of changed files, this package exposes
-the `scality-prettier-diff` script. It runs Prettier on files returned by
-`git diff --name-only --diff-filter=ACMRT`, defaults to `--check`, and forwards
-remaining arguments to `git diff`.
-
-Examples:
-
-```sh
-yarn run prettier:diff
-yarn run prettier:diff --check HEAD~1..HEAD
-yarn run prettier:diff --write --cached
-```
 
 ## Contributing
 

@@ -3,8 +3,7 @@
     "version": "8.3.3",
     "description": "ESLint config for Scality's Node.js coding guidelines",
     "bin": {
-        "mdlint": "./bin/mdlint.js",
-        "scality-prettier-diff": "./bin/prettier-diff.js"
+        "mdlint": "./bin/mdlint.js"
     },
     "main": "index.js",
     "exports": {
