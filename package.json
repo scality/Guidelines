@@ -28,7 +28,7 @@
         "markdownlint": "0.38.0"
     },
     "peerDependencies": {
-        "eslint": "^9 || ^10",
+        "eslint": "^9.35.0 || ^10",
         "prettier": "^3"
     },
     "devDependencies": {
