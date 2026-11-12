@@ -6,7 +6,6 @@ const config = {
         globals: {
             ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, 'off'])),
             ...globals.node,
-            ...globals.mocha,
         },
     },
     rules: {
