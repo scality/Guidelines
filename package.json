@@ -7,12 +7,16 @@
         "scality-prettier-diff": "./bin/prettier-diff.js"
     },
     "main": "index.js",
+    "exports": {
+        ".": "./index.js",
+        "./prettier.config.cjs": "./prettier.config.cjs",
+        "./package.json": "./package.json"
+    },
     "scripts": {
-        "test": "yarn run --silent lint && yarn run --silent lint_md && yarn run --silent prettier:diff",
+        "test": "node --test 'tests/*.js'",
         "lint": "eslint -c eslint.config.cjs $(git ls-files '*.js')",
         "lint_md": "node bin/mdlint.js $(git ls-files '*.md')",
-        "prettier": "prettier",
-        "prettier:diff": "node tests/prettier-diff.js"
+        "prettier": "prettier"
     },
     "repository": {
         "type": "git",
@@ -23,7 +27,7 @@
         "markdownlint": "0.38.0"
     },
     "peerDependencies": {
-        "eslint": "^9",
+        "eslint": "^9 || ^10",
         "prettier": "^3"
     },
     "peerDependenciesMeta": {
@@ -32,7 +36,7 @@
         }
     },
     "devDependencies": {
-        "eslint": "^9.39.5",
+        "eslint": "^10.14.0",
         "prettier": "^3.9.6"
     },
     "keywords": [

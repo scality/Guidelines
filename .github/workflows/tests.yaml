@@ -5,6 +5,7 @@ on:
   push:
     branches-ignore:
     - 'development/**'
+    - 'q/*'
 
 jobs:
   test:
@@ -25,3 +26,5 @@ jobs:
       run: yarn lint_md
     - name: lint javascript
       run: yarn lint
+    - name: test
+      run: yarn test
