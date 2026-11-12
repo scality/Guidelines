@@ -5,6 +5,7 @@ on:
   push:
     branches-ignore:
     - 'development/**'
+    - 'q/*'
 
 jobs:
   test:
