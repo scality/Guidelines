@@ -11,14 +11,35 @@ This project:
 
 ## ESLint configuration
 
-The package exports a flat ESLint configuration. Spread it in the project's
-`eslint.config.mjs`, before the project's own rules:
+The package exports a flat ESLint configuration. It leaves formatting to
+Prettier, so use it together with the Prettier baseline below. Spread it in the
+project's `eslint.config.mjs`, before the project's own rules:
 
 ```js
 import scality from 'eslint-config-scality';
 
 export default [...scality /* , project rules */];
 ```
+
+The configuration declares the Node.js globals, not the globals of a test
+runner. Declare your test runner's globals for your test files, with the
+`globals` package as a development dependency. For Mocha:
+
+```js
+import globals from 'globals';
+import scality from 'eslint-config-scality';
+
+export default [
+    ...scality,
+    {
+        files: ['tests/**/*.js'],
+        languageOptions: { globals: globals.mocha },
+    },
+];
+```
+
+Use `globals.jest` for Jest. A test helper outside the test files can declare
+the names it uses with a comment, such as `/* global describe, it */`.
 
 ## Prettier baseline
 
@@ -52,8 +73,7 @@ To use it in a project:
     {
         "scripts": {
             "format": "prettier --write .",
-            "format:check": "prettier --check .",
-            "prettier:diff": "scality-prettier-diff"
+            "format:check": "prettier --check ."
         }
     }
     ```
@@ -64,19 +84,6 @@ is intended to be the **default Scality baseline** for new or reformatted
 Node.js codebases. YAML/JSON/Markdown files default to a 2-space indentation
 and Markdown prose is left un-reflowed by default (`proseWrap: 'preserve'`),
 to avoid noisy diffs in existing documentation.
-
-For pull request checks or local review of changed files, this package exposes
-the `scality-prettier-diff` script. It runs Prettier on files returned by
-`git diff --name-only --diff-filter=ACMRT`, defaults to `--check`, and forwards
-remaining arguments to `git diff`.
-
-Examples:
-
-```sh
-yarn run prettier:diff
-yarn run prettier:diff --check HEAD~1..HEAD
-yarn run prettier:diff --write --cached
-```
 
 ## Contributing
 

@@ -23,7 +23,7 @@ with your exceptions gracefully.
 ```es6
 http.createServer((req, res) => {
     const d = domain.create();
-    d.on('error', yourRecoveryFunction)
+    d.on('error', yourRecoveryFunction);
     d.run(yourHandler(req, res));
 });
 ```
