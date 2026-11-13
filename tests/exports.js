@@ -11,6 +11,7 @@ test('the package entry points resolve', () => {
     for (const [specifier, file] of [
         ['eslint-config-scality', 'index.js'],
         ['eslint-config-scality/prettier.config.cjs', 'prettier.config.cjs'],
+        ['eslint-config-scality/testing', 'testing.js'],
         ['eslint-config-scality/package.json', 'package.json'],
     ]) {
         assert.strictEqual(require.resolve(specifier), path.join(root, file));
