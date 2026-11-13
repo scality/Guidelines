@@ -22,24 +22,21 @@ export default [...scality /* , project rules */];
 ```
 
 The configuration declares the Node.js globals, not the globals of a test
-runner. Declare your test runner's globals for your test files, with the
-`globals` package as a development dependency. For Mocha:
+runner. For your test files, add the block that `eslint-config-scality/testing`
+builds for your test runner, after the configuration and your own rules, with
+the patterns of your test files, and `eslint-plugin-mocha` or
+`eslint-plugin-jest` as a development dependency:
 
 ```js
-import globals from 'globals';
 import scality from 'eslint-config-scality';
+import { mocha } from 'eslint-config-scality/testing';
 
 export default [
     ...scality,
-    {
-        files: ['tests/**/*.js'],
-        languageOptions: { globals: globals.mocha },
-    },
+    // the project's own config blocks
+    mocha(['tests/**/*.js']), // or jest([...])
 ];
 ```
-
-Use `globals.jest` for Jest. A test helper outside the test files can declare
-the names it uses with a comment, such as `/* global describe, it */`.
 
 ## Prettier baseline
 
